@@ -21,7 +21,7 @@ module Products
   # Get support data used in products.
   #
   # ==== Example
-  #     @data = @mints_user.get_products_support_data
+  #     @data = @cxf_user.get_products_support_data
   def get_products_support_data
     @client.raw('get', '/ecommerce/products/support-data')
   end
@@ -47,7 +47,7 @@ module Products
   #     data = {
   #       scheduled_at: '1970-01-01 00:00:00'
   #     }
-  #     @data = @mints_user.schedule_product(2, data)
+  #     @data = @cxf_user.schedule_product(2, data)
   def schedule_product(id, data)
     @client.raw('put', "/ecommerce/products/#{id}/schedule", nil, data_transform(data))
   end
@@ -59,7 +59,7 @@ module Products
   # id:: (Integer) -- Product id.
   #
   # ==== Example
-  #     @data = @mints_user.get_product_variant_options_config(1)
+  #     @data = @cxf_user.get_product_variant_options_config(1)
   def get_product_variant_options_config(id)
     @client.raw('get', "/ecommerce/products/#{id}/variant-options-config")
   end
@@ -71,7 +71,7 @@ module Products
   # id:: (Integer) -- Product id.
   #
   # ==== Example
-  #     @data = @mints_user.revert_published_product(2)
+  #     @data = @cxf_user.revert_published_product(2)
   def revert_published_product(id)
     @client.raw('get', "/ecommerce/products/#{id}/revert-published-data")
   end
@@ -84,19 +84,19 @@ module Products
   # use_post:: (Boolean) -- Variable to determine if the request is by 'post' or 'get' functions.
   #
   # ==== First Example
-  #     @data = @mints_user.get_products
+  #     @data = @cxf_user.get_products
   #
   # ==== Second Example
   #     options = {
   #       fields: 'id'
   #     }
-  #     @data = @mints_user.get_products(options)
+  #     @data = @cxf_user.get_products(options)
   #
   # ==== Third Example
   #     options = {
   #       fields: 'id'
   #     }
-  #     @data = @mints_user.get_products(options, false)
+  #     @data = @cxf_user.get_products(options, false)
   def get_products(options = nil, use_post = true)
     get_query_results('/ecommerce/products', options, use_post)
   end
@@ -109,13 +109,13 @@ module Products
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_product(3)
+  #     @data = @cxf_user.get_product(3)
   #
   # ==== Second Example
   #     options = {
   #       fields: "slug"
   #     }
-  #     @data = @mints_user.get_product(3, options)
+  #     @data = @cxf_user.get_product(3, options)
   def get_product(id, options = nil)
     @client.raw('get', "/ecommerce/products/#{id}", options)
   end
@@ -132,7 +132,7 @@ module Products
   #       slug: 'new-product',
   #       sku_prefix: 'sku_prefix'
   #     }
-  #     @data = @mints_user.create_product(data)
+  #     @data = @cxf_user.create_product(data)
   def create_product(data, options = nil)
     @client.raw('post', '/ecommerce/products/', options, data_transform(data))
   end
@@ -149,7 +149,7 @@ module Products
   #       title: 'New Product Modified',
   #       slug: 'new-product'
   #     }
-  #     @data = @mints_user.update_product(9, data)
+  #     @data = @cxf_user.update_product(9, data)
   def update_product(id, data, options = nil)
     @client.raw('put', "/ecommerce/products/#{id}", options, data_transform(data))
   end

@@ -12,15 +12,15 @@ module Assets
   # use_post:: (Boolean) -- Variable to determine if the request is by 'post' or 'get' functions.
   #
   # ==== First Example
-  #     @data = @mints_user.get_assets
+  #     @data = @cxf_user.get_assets
   #
   # ==== Second Example
   #     options = { fields: 'id, title' }
-  #     @data = @mints_user.get_assets(options)
+  #     @data = @cxf_user.get_assets(options)
   #
   # ==== Third Example
   #     options = { fields: 'id, title' }
-  #     @data = @mints_user.get_assets(options, true)
+  #     @data = @cxf_user.get_assets(options, true)
   def get_assets(options = nil, use_post = true)
     get_query_results('/content/assets', options, use_post)
   end
@@ -33,13 +33,13 @@ module Assets
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_asset(1)
+  #     @data = @cxf_user.get_asset(1)
   #
   # ==== Second Example
   #     options = {
   #       fields: 'id, title'
   #     }
-  #     @data = @mints_user.get_asset(1, options)
+  #     @data = @cxf_user.get_asset(1, options)
   def get_asset(id, options = nil)
     @client.raw('get', "/content/assets/#{id}", options)
   end
@@ -55,7 +55,7 @@ module Assets
   #       title: 'New Asset',
   #       slug: 'new-asset',
   #     }
-  #     @data = @mints_user.create_asset(data)
+  #     @data = @cxf_user.create_asset(data)
   def create_asset(data)
     @client.raw('post', '/content/assets', nil, data_transform(data))
   end
@@ -72,7 +72,7 @@ module Assets
   #       title: 'New Asset Modified',
   #       slug: 'new-asset'
   #     }
-  #     @data = @mints_user.update_asset(5, data)
+  #     @data = @cxf_user.update_asset(5, data)
   def update_asset(id, data)
     @client.raw('put', "/content/assets/#{id}", nil, data_transform(data))
   end
@@ -84,7 +84,7 @@ module Assets
   # id:: (Integer) -- Asset id.
   #
   # ==== Example
-  #     @data = @mints_user.delete_asset(6)
+  #     @data = @cxf_user.delete_asset(6)
   def delete_asset(id)
     @client.raw('delete', "/content/assets/#{id}")
   end
@@ -99,7 +99,7 @@ module Assets
   #     data = {
   #       link: 'https://www.example.com/img/img.jpg'
   #     }
-  #     @data = @mints_user.get_asset_link_info(data.to_json)
+  #     @data = @cxf_user.get_asset_link_info(data.to_json)
   def get_asset_link_info(data)
     @client.raw('post', '/content/assets/getLinkInfo', nil, data)
   end
@@ -111,7 +111,7 @@ module Assets
   # id:: (Integer) -- Asset id.
   #
   # ==== Example
-  #     @data = @mints_user.download_asset(2)
+  #     @data = @cxf_user.download_asset(2)
   def download_asset(id)
     # FIXME: File not found at path, error in result but method works
     @client.raw('get', "/content/assets/download/#{id}")
@@ -172,7 +172,7 @@ module Assets
   #       type: 'link',
   #       father_id: 1
   #     }
-  #     @data = @mints_user.upload_asset(data.to_json)
+  #     @data = @cxf_user.upload_asset(data.to_json)
   #
   # ==== Third Example (with video)
   #     data = {
@@ -203,7 +203,7 @@ module Assets
   #         account_id: 1234567
   #       }
   #     }
-  #     @data = @mints_user.upload_asset(data.to_json)
+  #     @data = @cxf_user.upload_asset(data.to_json)
   def upload_asset(data)
     # TODO: Research a way to upload a File across sdk
     @client.raw('post', '/content/assets/upload', nil, data)
@@ -229,7 +229,7 @@ module Assets
   # id:: (Integer) Asset id.
   #
   # ==== Example
-  #     @data = @mints_user.get_asset_sizes(2)
+  #     @data = @cxf_user.get_asset_sizes(2)
   def get_asset_size(id)
     # FIXME: wrong number of arguments (given 1, expected 0)
     @client.raw('get', "/content/assets/sizes/#{id}")
@@ -259,7 +259,7 @@ module Assets
   #       title: 'fuji_size',
   #       variationId: 'original'
   #    }
-  #    @data = @mints_user.create_asset_size(data.to_json)
+  #    @data = @cxf_user.create_asset_size(data.to_json)
   def create_asset_size(data)
     @client.raw('post', '/content/assets/sizes', nil, data)
   end
@@ -274,7 +274,7 @@ module Assets
   # id:: (Integer) Asset variation id.
   #
   # ==== Example
-  #     @data = @mints_user.get_asset_sizes(2)
+  #     @data = @cxf_user.get_asset_sizes(2)
   # TODO: Research if is an asset id or an variation id
   def get_asset_variation(id)
     # FIXME: Id 1 and 4: Trying to get property 'path' of non-object maybe json conversion is bad

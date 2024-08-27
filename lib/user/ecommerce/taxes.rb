@@ -12,11 +12,11 @@ module Taxes
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_taxes
+  #     @data = @cxf_user.get_taxes
   #
   # ==== Second Example
   #     options = { fields: 'title' }
-  #     @data = @mints_user.get_taxes(options)
+  #     @data = @cxf_user.get_taxes(options)
   def get_taxes(options = nil)
     @client.raw('get', '/ecommerce/taxes', options)
   end
@@ -29,11 +29,11 @@ module Taxes
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_tax(1)
+  #     @data = @cxf_user.get_tax(1)
   #
   # ==== Second Example
   #     options = { fields: 'title' }
-  #     @data = @mints_user.get_tax(1, options)
+  #     @data = @cxf_user.get_tax(1, options)
   def get_tax(id, options = nil)
     @client.raw('get', "/ecommerce/taxes/#{id}", options)
   end
@@ -49,7 +49,7 @@ module Taxes
   #       title: 'New Tax',
   #       tax_percentage: 100
   #     }
-  #     @data = @mints_user.create_tax(data)
+  #     @data = @cxf_user.create_tax(data)
   def create_tax(data)
     @client.raw('post', '/ecommerce/taxes', nil, data_transform(data))
   end
@@ -65,7 +65,7 @@ module Taxes
   #     data = {
   #       tax_percentage: 10
   #     }
-  #     @data = @mints_user.update_tax(11, data)
+  #     @data = @cxf_user.update_tax(11, data)
   def update_tax(id, data)
     @client.raw('put', "/ecommerce/taxes/#{id}", nil, data_transform(data))
   end
@@ -77,7 +77,7 @@ module Taxes
   # id:: (Integer) -- Tax id.
   #
   # ==== Example
-  #     @data = @mints_user.delete_tax(11)
+  #     @data = @cxf_user.delete_tax(11)
   def delete_tax(id)
     @client.raw('delete', "/ecommerce/taxes/#{id}")
   end

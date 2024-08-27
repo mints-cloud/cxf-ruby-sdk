@@ -12,11 +12,11 @@ module VariantOptions
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_variant_options
+  #     @data = @cxf_user.get_variant_options
   #
   # ==== Second Example
   #     options = { fields: 'id, title' }
-  #     @data = @mints_user.get_variant_options(options)
+  #     @data = @cxf_user.get_variant_options(options)
   def get_variant_options(options = nil)
     @client.raw('get', '/ecommerce/variant-options', options)
   end
@@ -29,11 +29,11 @@ module VariantOptions
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_variant_option(1)
+  #     @data = @cxf_user.get_variant_option(1)
   #
   # ==== Second Example
   #     options = { fields: 'id, title' }
-  #     @data = @mints_user.get_variant_option(1, options)
+  #     @data = @cxf_user.get_variant_option(1, options)
   def get_variant_option(id, options = nil)
     @client.raw('get', "/ecommerce/variant-options/#{id}", options)
   end
@@ -48,7 +48,7 @@ module VariantOptions
   #     data = {
   #       title: 'New Variant Option'
   #     }
-  #     @data = @mints_user.create_variant_option(data)
+  #     @data = @cxf_user.create_variant_option(data)
   def create_variant_option(data)
     @client.raw('post', '/ecommerce/variant-options', nil, data_transform(data))
   end
@@ -64,7 +64,7 @@ module VariantOptions
   #     data = {
   #       title: 'New Variant Option Modified'
   #     }
-  #     @data = @mints_user.update_variant_option(6, data)
+  #     @data = @cxf_user.update_variant_option(6, data)
   def update_variant_option(id, data)
     @client.raw('put', "/ecommerce/variant-options/#{id}", nil, data_transform(data))
   end

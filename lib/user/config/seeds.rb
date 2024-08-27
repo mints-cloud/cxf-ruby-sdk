@@ -23,13 +23,13 @@ module Seeds
   # use_post:: (Boolean) -- Variable to determine if the request is by 'post' or 'get' functions.
   #
   # ==== First Example
-  #     @data = @mints_user.get_seed_processes
+  #     @data = @cxf_user.get_seed_processes
   #
   # ==== Second Example
   #     options = {
   #       fields: 'id'
   #     }
-  #     @data = @mints_user.get_seed_processes(options)
+  #     @data = @cxf_user.get_seed_processes(options)
   def get_seed_processes(options = nil)
     @client.raw('post', '/config/seed-processes', options)
   end
@@ -42,13 +42,13 @@ module Seeds
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_seed_process(1)
+  #     @data = @cxf_user.get_seed_process(1)
   #
   # ==== Second Example
   #     options = {
   #       fields: 'id, title'
   #     }
-  #     @data = @mints_user.get_seed_process(1, options)
+  #     @data = @cxf_user.get_seed_process(1, options)
   def get_seed_process(id, options = nil)
     @client.raw('get', "/config/seed-processes/#{id}", options)
   end

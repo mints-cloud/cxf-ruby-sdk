@@ -12,11 +12,11 @@ module ItemPrices
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_item_prices
+  #     @data = @cxf_user.get_item_prices
   #
   # ==== Second Example
   #     options = { fields: 'price_cents' }
-  #     @data = @mints_user.get_item_prices(options)
+  #     @data = @cxf_user.get_item_prices(options)
   def get_item_prices(options = nil)
     @client.raw('get', '/ecommerce/item-prices', options)
   end
@@ -29,11 +29,11 @@ module ItemPrices
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_item_price(1)
+  #     @data = @cxf_user.get_item_price(1)
   #
   # ==== Second Example
   #     options = { fields: 'price_cents' }
-  #     @data = @mints_user.get_item_price(1, options)
+  #     @data = @cxf_user.get_item_price(1, options)
   def get_item_price(id, options = nil)
     @client.raw('get', "/ecommerce/item-prices/#{id}", options)
   end
@@ -53,7 +53,7 @@ module ItemPrices
   #       price_list_id: 1,
   #       title: 'New Item Price'
   #     }
-  #     @data = @mints_user.create_item_price(data)
+  #     @data = @cxf_user.create_item_price(data)
   def create_item_price(data)
     # FIXME: Api send sku_id as null and DB doesnt allow that.
     @client.raw('post', '/ecommerce/item-prices', nil, data_transform(data))
@@ -70,7 +70,7 @@ module ItemPrices
   #     data = {
   #       price: 12345
   #     }
-  #     @data = @mints_user.update_item_price(1, data)
+  #     @data = @cxf_user.update_item_price(1, data)
   def update_item_price(id, data)
     @client.raw('put', "/ecommerce/item-prices/#{id}", nil, data_transform(data))
   end
@@ -82,7 +82,7 @@ module ItemPrices
   # id:: (Integer) -- Item price id.
   #
   # ==== Example
-  #     @data = @mints_user.delete_item_price(803)
+  #     @data = @cxf_user.delete_item_price(803)
   def delete_item_price(id)
     @client.raw('delete', "/ecommerce/item-prices/#{id}")
   end

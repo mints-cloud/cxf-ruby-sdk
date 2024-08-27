@@ -12,13 +12,13 @@ module Calendars
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_calendars
+  #     @data = @cxf_user.get_calendars
   #
   # ==== Second Example
   #     options = {
   #       fields: 'title'
   #     }
-  #     @data = @mints_user.get_calendars(options)
+  #     @data = @cxf_user.get_calendars(options)
   def get_calendars(options = nil)
     @client.raw('get', '/config/calendars', options)
   end
@@ -31,13 +31,13 @@ module Calendars
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_calendar(1)
+  #     @data = @cxf_user.get_calendar(1)
   #
   # ==== Second Example
   #     options = {
   #       fields: 'title'
   #     }
-  #     @data = @mints_user.get_calendar(1, options)
+  #     @data = @cxf_user.get_calendar(1, options)
   def get_calendar(id, options = nil)
     @client.raw('get', "/config/calendars/#{id}", options)
   end
@@ -54,7 +54,7 @@ module Calendars
   #       object_type: 'contacts',
   #       object_id: 1
   #     }
-  #     @data = @mints_user.create_calendar(data)
+  #     @data = @cxf_user.create_calendar(data)
   def create_calendar(data)
     @client.raw('post', '/config/calendars', nil, data_transform(data))
   end
@@ -72,7 +72,7 @@ module Calendars
   #       object_type: 'contacts',
   #       object_id: 1
   #     }
-  #     @data = @mints_user.update_calendar(4, data)
+  #     @data = @cxf_user.update_calendar(4, data)
   def update_calendar(id, data)
     @client.raw('put', "/config/calendars/#{id}", nil, data_transform(data))
   end
@@ -84,7 +84,7 @@ module Calendars
   # id:: (Integer) -- Calendar id.
   #
   # ==== Example
-  #     @data = @mints_user.delete_calendar(4)
+  #     @data = @cxf_user.delete_calendar(4)
   def delete_calendar(id)
     @client.raw('delete', "/config/calendars/#{id}")
   end

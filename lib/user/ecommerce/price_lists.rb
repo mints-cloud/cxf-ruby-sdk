@@ -12,13 +12,13 @@ module PriceList
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_price_lists
+  #     @data = @cxf_user.get_price_lists
   #
   # ==== Second Example
   #     options = {
   #       fields: "title"
   #     }
-  #     @data = @mints_user.get_price_lists(options)
+  #     @data = @cxf_user.get_price_lists(options)
   def get_price_lists(options = nil, use_post = true)
     get_query_results('/ecommerce/price-list', options, use_post)
   end
@@ -31,13 +31,13 @@ module PriceList
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_price_list(1)
+  #     @data = @cxf_user.get_price_list(1)
   #
   # ==== Second Example
   #     options = {
   #       fields: 'title'
   #     }
-  #     @data = @mints_user.get_price_list(1, options)
+  #     @data = @cxf_user.get_price_list(1, options)
   def get_price_list(id, options = nil)
     @client.raw('get', "/ecommerce/price-list/#{id}", options)
   end
@@ -52,7 +52,7 @@ module PriceList
   #     data = {
   #       title: 'New Price List'
   #     }
-  #     @data = @mints_user.create_price_list(data)
+  #     @data = @cxf_user.create_price_list(data)
   def create_price_list(data)
     @client.raw('post', '/ecommerce/price-list', nil, data_transform(data))
   end
@@ -68,7 +68,7 @@ module PriceList
   #     data = {
   #       title: 'New Price List Modified'
   #     }
-  #     @data = @mints_user.update_price_list(8, data)
+  #     @data = @cxf_user.update_price_list(8, data)
   def update_price_list(id, data)
     @client.raw('put', "/ecommerce/price-list/#{id}", nil, data_transform(data))
   end

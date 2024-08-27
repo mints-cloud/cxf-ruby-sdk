@@ -41,7 +41,7 @@ module Helpers
   # Get config used in magic links.
   #
   # ==== Example
-  #     @data = @mints_user.get_magic_link_config
+  #     @data = @cxf_user.get_magic_link_config
   def get_magic_link_config
     @client.raw('get', '/helpers/magic-link-config')
   end
@@ -58,7 +58,7 @@ module Helpers
   # id:: (Integer) -- Object type id.
   #
   # ==== Example
-  #     @data = @mints_user.get_activities_by_object_type_and_id('contacts', 1)
+  #     @data = @cxf_user.get_activities_by_object_type_and_id('contacts', 1)
   def get_activities_by_object_type_and_id(object_type, id)
     @client.raw('get', "/helpers/activities/#{object_type}/#{id}")
   end
@@ -79,7 +79,7 @@ module Helpers
   #       field: 'id',
   #       word: '1'
   #     }
-  #     @data = @mints_user.get_dice_coefficient(options)
+  #     @data = @cxf_user.get_dice_coefficient(options)
   def get_dice_coefficient(options)
     @client.raw('get', '/helpers/dice-coefficient', options)
   end
@@ -92,7 +92,7 @@ module Helpers
   # Get permission menu.
   #
   # ==== Example
-  #     @data = @mints_user.get_permission_menu
+  #     @data = @cxf_user.get_permission_menu
   def get_permission_menu
     @client.raw('get', '/helpers/menu')
   end
@@ -109,7 +109,7 @@ module Helpers
   # id:: (Integer) -- Object type id.
   #
   # ==== Example
-  #     @data = @mints_user.generate_seed('contacts', 1)
+  #     @data = @cxf_user.generate_seed('contacts', 1)
   def generate_seed(object_type, id)
     @client.raw('get', "/helpers/seeds/#{object_type}/#{id}")
   end

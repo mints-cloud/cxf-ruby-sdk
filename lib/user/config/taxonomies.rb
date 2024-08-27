@@ -15,7 +15,7 @@ module Taxonomies
   #       object_type: 'contacts',
   #       object_id: 1
   #     }
-  #     @data = @mints_user.sync_taxonomies_for_object(data)
+  #     @data = @cxf_user.sync_taxonomies_for_object(data)
   def sync_taxonomies_for_object(data)
     @client.raw('put', '/config/taxonomies/sync_taxonomies_for_object', nil, data_transform(data))
   end
@@ -31,7 +31,7 @@ module Taxonomies
   #       object_type: "contacts",
   #       object_id: 1
   #     }
-  #     @data = @mints_user.get_taxonomies_for_object(options)
+  #     @data = @cxf_user.get_taxonomies_for_object(options)
   def get_taxonomies_for_object(options)
     @client.raw('get', '/config/taxonomies/get_taxonomies_for_object', options)
   end
@@ -40,7 +40,7 @@ module Taxonomies
   # Get support data used in taxonomies.
   #
   # ==== Example
-  #     @data = @mints_user.get_taxonomies_support_data
+  #     @data = @cxf_user.get_taxonomies_support_data
   def get_taxonomies_support_data
     @client.raw('get', '/config/taxonomies/support-data')
   end
@@ -53,15 +53,15 @@ module Taxonomies
   # use_post:: (Boolean) -- Variable to determine if the request is by 'post' or 'get' functions.
   #
   # ==== First Example
-  #     @data = @mints_user.get_taxonomies
+  #     @data = @cxf_user.get_taxonomies
   #
   # ==== Second Example
   #     options = { fields: 'title' }
-  #     @data = @mints_user.get_taxonomies(options)
+  #     @data = @cxf_user.get_taxonomies(options)
   #
   # ==== Third Example
   #     options = { fields: 'title' }
-  #     @data = @mints_user.get_taxonomies(options, false)
+  #     @data = @cxf_user.get_taxonomies(options, false)
   def get_taxonomies(options = nil, use_post = true)
     get_query_results('/config/taxonomies', options, use_post)
   end
@@ -74,11 +74,11 @@ module Taxonomies
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_taxonomy(1)
+  #     @data = @cxf_user.get_taxonomy(1)
   #
   # ==== Second Example
   #     options = { fields: 'title' }
-  #     @data = @mints_user.get_taxonomy(1, options)
+  #     @data = @cxf_user.get_taxonomy(1, options)
   def get_taxonomy(id, options = nil)
     @client.raw('get', "/config/taxonomies/#{id}", options)
   end
@@ -95,7 +95,7 @@ module Taxonomies
   #       slug: 'new-taxonomy',
   #       object_type: 'contacts'
   #     }
-  #     @data = @mints_user.create_taxonomy(data)
+  #     @data = @cxf_user.create_taxonomy(data)
   def create_taxonomy(data, options = nil)
     @client.raw('post', '/config/taxonomies', options, data_transform(data))
   end
@@ -113,7 +113,7 @@ module Taxonomies
   #       slug: "new-taxonomy",
   #       object_type: "contacts"
   #     }
-  #     @data = @mints_user.update_taxonomy(104, data)
+  #     @data = @cxf_user.update_taxonomy(104, data)
   def update_taxonomy(id, data, options = nil)
     @client.raw('put', "/config/taxonomies/#{id}", options, data_transform(data))
   end

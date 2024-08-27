@@ -2,25 +2,25 @@
 
 require 'yaml'
 require_relative './client'
-require_relative './mints/helpers/mints_helper'
-require_relative './mints/helpers/threads_helper'
+require_relative './cxf/helpers/cxf_helper'
+require_relative './cxf/helpers/threads_helper'
 require_relative './pub/content/content'
 require_relative './pub/ecommerce/ecommerce'
 require_relative './pub/config/config'
 
-module Mints
+module Cxf
   ##
   # == Public context API
   # Pub class contains functions that needs only an API key as authentication
   # == Usage example
-  # === For Mints::BaseController inheritance:
-  # If the controller is inheriting from Mints::BaseController, Only use the class variable *mints_pub*  _Example:_
-  #     @mints_pub.get_stories
+  # === For Cxf::BaseController inheritance:
+  # If the controller is inheriting from Cxf::BaseController, Only use the class variable *cxf_pub*  _Example:_
+  #     @cxf_pub.get_stories
   # === For standalone usage:
   # Initialize
-  #     pub = Mints::Pub.new(mints_url, api_key)
-  # or if host and api_key are provided by mints_config.yml.erb
-  #     pub = Mints::Pub.new
+  #     pub = Cxf::Pub.new(cxf_url, api_key)
+  # or if host and api_key are provided by cxf_config.yml.erb
+  #     pub = Cxf::Pub.new
   # Call any function
   #     pub.get_products
   # == Single resource options
@@ -64,7 +64,7 @@ module Mints
   class Pub
     attr_reader :client
 
-    include MintsHelper
+    include CxfHelper
     include PublicContent
     include PublicEcommerce
     include PublicConfig
@@ -76,8 +76,8 @@ module Mints
     #
     # ==== Parameters
     # host:: (String) -- It's the visitor IP.
-    # api_key:: (String) -- Mints instance api key.
-    # contact_token_id:: (Integer) --  Cookie 'mints_contact_id' value (mints_contact_token).
+    # api_key:: (String) -- Cxf instance api key.
+    # contact_token_id:: (Integer) --  Cookie 'cxf_contact_id' value (cxf_contact_token).
     #
     # ==== Return
     # Returns a Client object.
@@ -89,7 +89,7 @@ module Mints
       debug = false,
       timeouts = {}
     )
-      @client = Mints::Client.new(
+      @client = Cxf::Client.new(
         host,
         api_key,
         'public',
@@ -103,7 +103,7 @@ module Mints
 
     ##
     # === Register Visit.
-    # Register a ghost/contact visit in Mints.Cloud.
+    # Register a ghost/contact visit in Cxf.Cloud.
     #
     # ==== Parameters
     # request:: (ActionDispatch::Request) -- request.
@@ -117,7 +117,7 @@ module Mints
     #       "user_agent" => "User Agent",
     #       "fullpath" => "https://fullpath/example"
     #     }
-    #     @data = @mints_pub.register_visit(request, request["remote_ip"], request["user_agent"], request["fullpath"])
+    #     @data = @cxf_pub.register_visit(request, request["remote_ip"], request["user_agent"], request["fullpath"])
     def register_visit(request, ip = nil, user_agent = nil, url = nil)
       data = {
         ip_address: ip || request.remote_ip,
@@ -137,7 +137,7 @@ module Mints
     # time:: (Integer) -- The visitor's browser user agent.
     #
     # ==== Example
-    #     @data = @mints_pub.register_visit_timer("60da2325d29acc7e55684472", 4)
+    #     @data = @cxf_pub.register_visit_timer("60da2325d29acc7e55684472", 4)
     def register_visit_timer(visit, time)
       @client.raw('get', "/register-visit-timer?visit=#{visit}&time=#{time}")
     end

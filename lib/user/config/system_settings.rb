@@ -11,7 +11,7 @@ module SystemSettings
   #     options = {
   #       setting_keys: 'email_transport_provider,email_template_provider,email_template_default_from_address'
   #     }
-  #     @data = @mints_user.get_settings_by_keys(options)
+  #     @data = @cxf_user.get_settings_by_keys(options)
   def get_settings_by_keys(options)
     @client.raw('get', '/config/settings/by-keys', options)
   end
@@ -20,7 +20,7 @@ module SystemSettings
   # Get a collection of settings.
   #
   # ====  Example
-  #     @data = @mints_user.get_settings
+  #     @data = @cxf_user.get_settings
   def get_settings
     @client.raw('get', '/config/settings')
   end
@@ -35,7 +35,7 @@ module SystemSettings
   #     data = {
   #       title: 'new_settings'
   #     }
-  #     @data = @mints_user.create_setting(data)
+  #     @data = @cxf_user.create_setting(data)
   def create_setting(data)
     @client.raw('post', '/config/settings', nil, data_transform(data))
   end
@@ -47,7 +47,7 @@ module SystemSettings
   # tag:: (Integer) -- Tag id.
   #
   # ==== Example
-  #     @data = @mints_user.clear_tag(1)
+  #     @data = @cxf_user.clear_tag(1)
   def clear_tag(tag)
     @client.raw('get', "/config/settings/tags/#{tag}/clear")
   end

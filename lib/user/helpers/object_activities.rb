@@ -12,11 +12,11 @@ module ObjectActivities
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_object_activities
+  #     @data = @cxf_user.get_object_activities
   #
   # ==== Second Example
   #     options = { fields: 'object_type' }
-  #     @data = @mints_user.get_object_activities(options)
+  #     @data = @cxf_user.get_object_activities(options)
   def get_object_activities(options = nil)
     @client.raw('get', '/helpers/object-activities', options)
   end
@@ -29,11 +29,11 @@ module ObjectActivities
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_object_activity(1)
+  #     @data = @cxf_user.get_object_activity(1)
   #
   # ==== Second Example
   #     options = { fields: 'activity_type' }
-  #     @data = @mints_user.get_object_activity(1, options)
+  #     @data = @cxf_user.get_object_activity(1, options)
   def get_object_activity(id, options = nil)
     @client.raw('get', "/helpers/object-activities/#{id}", options)
   end
@@ -50,7 +50,7 @@ module ObjectActivities
   #       object_type: 'contacts',
   #       object_id: 1
   #     }
-  #     @data = @mints_user.create_object_activity(data)
+  #     @data = @cxf_user.create_object_activity(data)
   def create_object_activity(data)
     @client.raw('post', '/helpers/object-activities', nil, data_transform(data))
   end
@@ -66,7 +66,7 @@ module ObjectActivities
   #     data = {
   #       activity_type: 'ticket'
   #     }
-  #     @data = @mints_user.update_object_activity(573, data)
+  #     @data = @cxf_user.update_object_activity(573, data)
   def update_object_activity(id, data)
     @client.raw('put', "/helpers/object-activities/#{id}", nil, data_transform(data))
   end
@@ -78,7 +78,7 @@ module ObjectActivities
   # id:: (Integer) -- Object activity id.
   #
   # ==== Example
-  #     @data = @mints_user.delete_object_activity(573)
+  #     @data = @cxf_user.delete_object_activity(573)
   def delete_object_activity(id)
     @client.raw('delete', "/helpers/object-activities/#{id}")
   end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require_relative './client'
-require_relative './mints/helpers/mints_helper'
-require_relative './mints/helpers/threads_helper'
+require_relative './cxf/helpers/cxf_helper'
+require_relative './cxf/helpers/threads_helper'
 require_relative './user/crm/crm'
 require_relative './user/content/content'
 require_relative './user/marketing/marketing'
@@ -12,13 +12,13 @@ require_relative './user/profile/profile'
 require_relative './user/helpers/helpers'
 require_relative './user/contacts/contacts'
 
-module Mints
+module Cxf
   ##
   # == User context API
   # User class contains functions that needs an API key and a session token as authentication
   # == Usage example
   # Initialize
-  #     client = Mints::User.new(mints_url, api_key)
+  #     client = Cxf::User.new(cxf_url, api_key)
   # Call any function
   #     client.get_contacts
   # == Single resource options
@@ -46,13 +46,13 @@ module Mints
     include Profile
     include Helpers
     include Contacts
-    include MintsHelper
+    include CxfHelper
     include ThreadsHelper
 
     attr_reader :client
 
     def initialize(host, api_key, session_token = nil, refresh_token = nil, debug = false, timeouts = {})
-      @client = Mints::Client.new(
+      @client = Cxf::Client.new(
         host,
         api_key,
         'user',

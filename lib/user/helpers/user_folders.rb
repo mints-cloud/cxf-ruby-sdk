@@ -12,11 +12,11 @@ module UserFolders
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_user_folders
+  #     @data = @cxf_user.get_user_folders
   #
   # ==== Second Example
   #     options = { fields: 'folder' }
-  #     @data = @mints_user.get_user_folders(options)
+  #     @data = @cxf_user.get_user_folders(options)
   def get_user_folders(options = nil)
     @client.raw('get', '/helpers/folders', options)
   end
@@ -29,11 +29,11 @@ module UserFolders
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_user_folder(1)
+  #     @data = @cxf_user.get_user_folder(1)
   #
   # ==== Second Example
   #     options = { fields: 'user_id, folder' }
-  #     @data = @mints_user.get_user_folder(1, options)
+  #     @data = @cxf_user.get_user_folder(1, options)
   def get_user_folder(id, options = nil)
     @client.raw('get', "/helpers/folders/#{id}", options)
   end
@@ -49,7 +49,7 @@ module UserFolders
   #       folder: 'new-user-folder',
   #       object_type: 'contacts'
   #     }
-  #     @data = @mints_user.create_user_folder(data)
+  #     @data = @cxf_user.create_user_folder(data)
   def create_user_folder(data)
     @client.raw('post', '/helpers/folders', nil, data_transform(data))
   end
@@ -66,7 +66,7 @@ module UserFolders
   #       folder:'new-user-folder-modifier',
   #       object_type:'contact'
   #     }
-  #     @data = @mints_user.update_user_folder(289, data)
+  #     @data = @cxf_user.update_user_folder(289, data)
   def update_user_folder(id, data)
     @client.raw('put', "/helpers/folders/#{id}", nil, data_transform(data))
   end
@@ -78,7 +78,7 @@ module UserFolders
   # id:: (Integer) -- User folder id.
   #
   # ==== Example
-  #     @data = @mints_user.delete_user_folder(289)
+  #     @data = @cxf_user.delete_user_folder(289)
   def delete_user_folder(id)
     @client.raw('delete', "/helpers/folders/#{id}")
   end

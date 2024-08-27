@@ -11,15 +11,15 @@ module Vouchers
   #
   # ==== First Example
   #
-  #     @data = @mints_user.get_vouchers
+  #     @data = @cxf_user.get_vouchers
   # ==== Second Example
   #
   #     options = { fields: 'id,title' }
-  #     @data = @mints_user.get_vouchers(options)
+  #     @data = @cxf_user.get_vouchers(options)
   # ==== Third Example
   #
   #     options = { fields: 'id,title' }
-  #     @data = @mints_user.get_vouchers(options, true)
+  #     @data = @cxf_user.get_vouchers(options, true)
   #
   def get_vouchers(options = nil, use_post = true)
     get_query_results('/ecommerce/vouchers', options, use_post)
@@ -35,11 +35,11 @@ module Vouchers
   #
   # ==== First Example
   #
-  #     @data = @mints_user.get_voucher(1)
+  #     @data = @cxf_user.get_voucher(1)
   # ==== Second Example
   #
   #     options = { fields: 'id,title' }
-  #     @data = @mints_user.get_voucher(1, options)
+  #     @data = @cxf_user.get_voucher(1, options)
   def get_voucher(id, options = nil)
     @client.raw('get', "/ecommerce/vouchers/#{id}", options)
   end
@@ -61,7 +61,7 @@ module Vouchers
   #       is_redeemed: false
   #     }
   #
-  #     @data = @mints_user.create_voucher(data)
+  #     @data = @cxf_user.create_voucher(data)
   def create_voucher(data)
     @client.raw('post', '/ecommerce/vouchers', nil, data_transform(data))
   end
@@ -83,7 +83,7 @@ module Vouchers
   #       end_date: '2023-03-30T10:20:00-06:00'
   #     }
   #
-  #     @data = @mints_user.update_voucher(1, data)
+  #     @data = @cxf_user.update_voucher(1, data)
   def update_voucher(id, data)
     @client.raw('put', "/ecommerce/vouchers/#{id}", nil, data_transform(data))
   end

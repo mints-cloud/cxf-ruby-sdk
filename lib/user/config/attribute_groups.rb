@@ -9,7 +9,7 @@ module AttributeGroups
   # Get data types used in attribute groups.
   #
   # ==== Example
-  #     @data = @mints_user.get_attribute_groups_data_types
+  #     @data = @cxf_user.get_attribute_groups_data_types
   def get_attribute_groups_data_types
     @client.raw('get', '/config/attribute-groups/object-types')
   end
@@ -21,11 +21,11 @@ module AttributeGroups
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_attribute_groups
+  #     @data = @cxf_user.get_attribute_groups
   #
   # ==== Second Example
   #     options = { sort: 'id' }
-  #     @data = @mints_user.get_attribute_groups(options)
+  #     @data = @cxf_user.get_attribute_groups(options)
   def get_attribute_groups(options = nil)
     @client.raw('get', '/config/attribute-groups', options)
   end
@@ -37,7 +37,7 @@ module AttributeGroups
   # id:: (Integer) -- Attribute group id.
   #
   # ==== Example
-  #     @data = @mints_user.get_attribute_group(10)
+  #     @data = @cxf_user.get_attribute_group(10)
   def get_attribute_group(id)
     @client.raw('get', "/config/attribute-groups/#{id}")
   end
@@ -53,7 +53,7 @@ module AttributeGroups
   #       title: 'New Attribute Group',
   #       object_type: 'contacts'
   #     }
-  #     @data = @mints_user.create_attribute_group(data)
+  #     @data = @cxf_user.create_attribute_group(data)
   def create_attribute_group(data)
     @client.raw('post', '/config/attribute-groups', nil, data_transform(data))
   end
@@ -72,7 +72,7 @@ module AttributeGroups
   #       slug: 'new-attribute-group',
   #       description: 'New description'
   #     }
-  #     @data = @mints_user.update_attribute_group(36, data)
+  #     @data = @cxf_user.update_attribute_group(36, data)
   def update_attribute_group(id, data)
     @client.raw('put', "/config/attribute-groups/#{id}", nil, data_transform(data))
   end

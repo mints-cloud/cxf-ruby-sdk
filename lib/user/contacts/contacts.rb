@@ -15,7 +15,7 @@ module Contacts
   #       password: '12345678',
   #       email: 'email@example.com'
   #     }
-  #     @data = @mints_user.change_password_no_auth(data)
+  #     @data = @cxf_user.change_password_no_auth(data)
   def change_password_no_auth(data)
     @client.raw('post', '/contacts/change-password-no-auth', nil, data_transform(data))
   end

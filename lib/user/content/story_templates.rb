@@ -12,7 +12,7 @@ module StoryTemplates
   # id:: (Integer) -- Story template id.
   #
   # ==== Example
-  #     @data = @mints_user.get_story_template_support_data(1)
+  #     @data = @cxf_user.get_story_template_support_data(1)
   def get_story_template_support_data(id)
     @client.raw('get', "/content/story-templates/support-data/stories/#{id}")
   end
@@ -21,7 +21,7 @@ module StoryTemplates
   # Get support data used in story templates.
   #
   # ==== Example
-  #     @data = @mints_user.get_story_templates_support_data
+  #     @data = @cxf_user.get_story_templates_support_data
   def get_story_templates_support_data
     @client.raw('get', '/content/story-templates/support-data')
   end
@@ -33,13 +33,13 @@ module StoryTemplates
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_story_templates
+  #     @data = @cxf_user.get_story_templates
   #
   # ==== Second Example
   #     options = {
   #       fields: 'id, title'
   #     }
-  #     @data = @mints_user.get_story_templates(options)
+  #     @data = @cxf_user.get_story_templates(options)
   def get_story_templates(options = nil)
     @client.raw('get', '/content/story-templates', options)
   end
@@ -52,13 +52,13 @@ module StoryTemplates
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_story_template(2)
+  #     @data = @cxf_user.get_story_template(2)
   #
   # ==== Second Example
   #     options = {
   #       fields: 'title'
   #     }
-  #     @data = @mints_user.get_story_template(1, options)
+  #     @data = @cxf_user.get_story_template(1, options)
   def get_story_template(id, options = nil)
     @client.raw('get', "/content/story-templates/#{id}", options)
   end
@@ -74,7 +74,7 @@ module StoryTemplates
   #       title: 'New Story Template',
   #       slug: 'new-story-template-slug'
   #     }
-  #     @data = @mints_user.create_story_template(data)
+  #     @data = @cxf_user.create_story_template(data)
   def create_story_template(data, options = nil)
     @client.raw('post', '/content/story-templates', options, data_transform(data))
   end
@@ -90,7 +90,7 @@ module StoryTemplates
   #     data = {
   #       title: 'New Story Template Modified'
   #     }
-  #     @data = @mints_user.update_story_template(3, data)
+  #     @data = @cxf_user.update_story_template(3, data)
   def update_story_template(id, data)
     @client.raw('put', "/content/story-templates/#{id}", nil, data_transform(data))
   end

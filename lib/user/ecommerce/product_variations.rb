@@ -37,7 +37,7 @@ module ProductVariations
   #       prices: prices
   #     }.to_json
   #
-  #     @data = @mints_user.set_prices_to_product_variations(data)
+  #     @data = @cxf_user.set_prices_to_product_variations(data)
   def set_prices_to_product_variations(data)
     @client.raw('post', '/ecommerce/product-variations/set-prices', nil, data_transform(data))
   end
@@ -49,7 +49,7 @@ module ProductVariations
   # product_id:: (Integer) -- Product id.
   #
   # ==== Example
-  #     @data = @mints_user.get_product_from_product_variation(1)
+  #     @data = @cxf_user.get_product_from_product_variation(1)
   def get_product_from_product_variation(product_id)
     @client.raw('get', "/ecommerce/product-variations/product/#{product_id}")
   end
@@ -61,7 +61,7 @@ module ProductVariations
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== Example
-  #     @data = @mints_user.get_product_variations
+  #     @data = @cxf_user.get_product_variations
   def get_product_variations
     @client.raw('get', '/ecommerce/product-variations')
   end
@@ -73,7 +73,7 @@ module ProductVariations
   # id:: (Integer) -- Product variation id.
   #
   # ==== Example
-  #     @data = @mints_user.get_product_variation(100)
+  #     @data = @cxf_user.get_product_variation(100)
   def get_product_variation(id)
     @client.raw('get', "/ecommerce/product-variations/#{id}")
   end
@@ -94,7 +94,7 @@ module ProductVariations
   #         { id: 1, value: 300 }
   #       ]
   #     }
-  #     @data = @mints_user.create_product_variation(data)
+  #     @data = @cxf_user.create_product_variation(data)
   def create_product_variation(data)
     @client.raw('post', '/ecommerce/product-variations', nil, data_transform(data))
   end
@@ -114,7 +114,7 @@ module ProductVariations
   #         { id: 1, value: 400 }
   #       ]
   #     }
-  #     @data = @mints_user.update_product_variation(528, data)
+  #     @data = @cxf_user.update_product_variation(528, data)
   def update_product_variation(id, data)
     @client.raw('put', "/ecommerce/product-variations/#{id}", nil, data_transform(data))
   end
@@ -126,7 +126,7 @@ module ProductVariations
   # id:: (Integer) -- Product variation id.
   #
   # ==== Example
-  #     @data = @mints_user.delete_product_variation(528)
+  #     @data = @cxf_user.delete_product_variation(528)
   def delete_product_variation(id)
     @client.raw('delete', "/ecommerce/product-variations/#{id}")
   end

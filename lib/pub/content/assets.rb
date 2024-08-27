@@ -9,7 +9,7 @@ module PublicAssets
   # slug:: (String) -- It's the string identifier of the asset.
   #
   # ==== Example
-  #     @data = @mints_pub.get_asset_info("asset_slug")
+  #     @data = @cxf_pub.get_asset_info("asset_slug")
   def get_asset_info(slug)
     @client.raw('get', "/content/asset-info/#{slug}")
   end

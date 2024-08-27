@@ -10,7 +10,7 @@ module Companies
   # Get support data of companies.
   #
   # ==== Example
-  #     @data = @mints_user.get_companies_support_data
+  #     @data = @cxf_user.get_companies_support_data
   def get_companies_support_data
     @client.raw('get', '/crm/companies/support-data')
   end
@@ -23,15 +23,15 @@ module Companies
   # use_post:: (Boolean) -- Variable to determine if the request is by 'post' or 'get' functions.
   #
   # ==== First Example
-  #     @data = @mints_user.get_companies
+  #     @data = @cxf_user.get_companies
   #
   # ==== Second Example
   #     options = { fields: 'id, title', sort: '-id' }
-  #     @data = @mints_user.get_companies(options)
+  #     @data = @cxf_user.get_companies(options)
   #
   # ==== Third Example
   #     options = { fields: 'id, title', sort: '-id' }
-  #     @data = @mints_user.get_companies(options, false)
+  #     @data = @cxf_user.get_companies(options, false)
   def get_companies(options = nil, use_post = true)
     get_query_results('/crm/companies', options, use_post)
   end
@@ -44,11 +44,11 @@ module Companies
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_company(21)
+  #     @data = @cxf_user.get_company(21)
   #
   # ==== Second Example
   #     options = { fields: 'id, title' }
-  #     @data = @mints_user.get_company(21, options)
+  #     @data = @cxf_user.get_company(21, options)
   def get_company(id, options = nil)
     @client.raw('get', "/crm/companies/#{id}", options)
   end
@@ -71,7 +71,7 @@ module Companies
   #         country_id: 144,
   #         tax_identifier: nil
   #     }
-  #     @data = @mints_user.create_company(data)
+  #     @data = @cxf_user.create_company(data)
   def create_company(data, options = nil)
     @client.raw('post', '/crm/companies/', options, data_transform(data))
   end
@@ -87,7 +87,7 @@ module Companies
   #     data = {
   #       title: 'Company Title Modified'
   #     }
-  #     @data = @mints_user.update_company(23, data)
+  #     @data = @cxf_user.update_company(23, data)
   def update_company(id, data, options = nil)
     @client.raw('put', "/crm/companies/#{id}", options, data_transform(data))
   end
@@ -104,7 +104,7 @@ module Companies
   #
   # ==== Example
   #     data = { ids: %w[21 22] }
-  #     @data = @mints_user.delete_companies(data)
+  #     @data = @cxf_user.delete_companies(data)
   def delete_companies(data)
     @client.raw('delete', '/crm/companies/delete', nil, data_transform(data))
   end

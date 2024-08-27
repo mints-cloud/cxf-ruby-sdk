@@ -8,13 +8,13 @@ module Templates
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_templates
+  #     @data = @cxf_user.get_templates
   #
   # ==== Second Example
   #     options = {
   #       fields: 'id, title'
   #     }
-  #     @data = @mints_user.get_templates(options)
+  #     @data = @cxf_user.get_templates(options)
   def get_templates(options = nil)
     @client.raw('get', '/content/templates', options)
   end
@@ -27,13 +27,13 @@ module Templates
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_template(2)
+  #     @data = @cxf_user.get_template(2)
   #
   # ==== Second Example
   #     options = {
   #       fields: 'title'
   #     }
-  #     @data = @mints_user.get_template(1, options)
+  #     @data = @cxf_user.get_template(1, options)
   def get_template(id, options = nil)
     @client.raw('get', "/content/templates/#{id}", options)
   end
@@ -49,7 +49,7 @@ module Templates
   #       title: 'New Template',
   #       slug: 'new/template-slug'
   #     }
-  #     @data = @mints_user.create_template(data)
+  #     @data = @cxf_user.create_template(data)
   def create_template(data, options = nil)
     @client.raw('post', '/content/templates', options, data_transform(data))
   end
@@ -65,7 +65,7 @@ module Templates
   #     data = {
   #       title: 'New Template Modified'
   #     }
-  #     @data = @mints_user.update_template(3, data)
+  #     @data = @cxf_user.update_template(3, data)
   def update_template(id, data)
     @client.raw('put', "/content/templates/#{id}", nil, data_transform(data))
   end

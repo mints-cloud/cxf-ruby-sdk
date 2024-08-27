@@ -14,7 +14,7 @@ module Relationships
   #     options = {
   #       objectType: 'contacts'
   #     }
-  #     @data = @mints_user.get_relationships_available_for(options)
+  #     @data = @cxf_user.get_relationships_available_for(options)
   def get_relationships_available_for(options)
     @client.raw('get', '/config/relationships/available-for', options)
   end
@@ -52,7 +52,7 @@ module Relationships
   # id:: (Integer) -- Relationship id.
   #
   # ==== Example
-  #     @data = @mints_user.relationship_has_objects(1)
+  #     @data = @cxf_user.relationship_has_objects(1)
   def relationship_has_objects(id)
     @client.raw('get', "/config/relationships/#{id}/hasObjects")
   end
@@ -64,11 +64,11 @@ module Relationships
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_relationships
+  #     @data = @cxf_user.get_relationships
   #
   # ==== Second Example
   #     options = { fields: 'id' }
-  #     @data = @mints_user.get_relationships(options)
+  #     @data = @cxf_user.get_relationships(options)
   def get_relationships(options = nil)
     @client.raw('get', '/config/relationships', options)
   end
@@ -81,11 +81,11 @@ module Relationships
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_relationship(1)
+  #     @data = @cxf_user.get_relationship(1)
   #
   # ==== Second Example
   #     options = { fields: 'id' }
-  #     @data = @mints_user.get_relationship(1, options)
+  #     @data = @cxf_user.get_relationship(1, options)
   def get_relationship(id, options = nil)
     @client.raw('get', "/config/relationships/#{id}", options)
   end
@@ -103,7 +103,7 @@ module Relationships
   #       object_model_1: 'Story',
   #       object_model_2: 'Product'
   #     }
-  #     @data = @mints_user.create_relationship(data)
+  #     @data = @cxf_user.create_relationship(data)
   def create_relationship(data)
     @client.raw('post', '/config/relationships', nil, data_transform(data))
   end
@@ -122,7 +122,7 @@ module Relationships
   #       object_model_1: 'Story',
   #       object_model_2: 'Product'
   #     }
-  #     @data = @mints_user.update_relationship(5, data)
+  #     @data = @cxf_user.update_relationship(5, data)
   def update_relationship(id, data)
     @client.raw('put', "/config/relationships/#{id}", nil, data_transform(data))
   end
@@ -134,7 +134,7 @@ module Relationships
   # id:: (Integer) -- Relationship id.
   #
   # ==== Example
-  #     @data = @mints_user.delete_relationship(5)
+  #     @data = @cxf_user.delete_relationship(5)
   def delete_relationship(id)
     @client.raw('delete', "/config/relationships/#{id}")
   end

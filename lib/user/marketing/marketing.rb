@@ -12,13 +12,13 @@ module Marketing
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_automations
+  #     @data = @cxf_user.get_automations
   #
   # ==== Second Example
   #       options = {
   #         fields: 'title'
   #       }
-  #       @data = @mints_user.get_automations(options)
+  #       @data = @cxf_user.get_automations(options)
   def get_automations(options = nil)
     @client.raw('get', '/marketing/automation', options)
   end
@@ -31,13 +31,13 @@ module Marketing
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_automation(1)
+  #     @data = @cxf_user.get_automation(1)
   #
   # ==== Second Example
   #     options = {
   #       fields: 'title, id'
   #     }
-  #     @data = @mints_user.get_automation(1, options)
+  #     @data = @cxf_user.get_automation(1, options)
   def get_automation(id, options = nil)
     @client.raw('get', "/marketing/automation/#{id}", options)
   end
@@ -52,7 +52,7 @@ module Marketing
   #     data = {
   #       title: 'New Automation'
   #     }
-  #     @data = @mints_user.create_automation(data)
+  #     @data = @cxf_user.create_automation(data)
   def create_automation(data)
     @client.raw('post', '/marketing/automation/', nil, data_transform(data))
   end
@@ -76,7 +76,7 @@ module Marketing
   # id:: (Integer) -- Automation id.
   #
   # ==== Example
-  #     @data = @mints_user.delete_automation(5)
+  #     @data = @cxf_user.delete_automation(5)
   def delete_automation(id)
     @client.raw('delete', "/marketing/automation/#{id}")
   end
@@ -88,7 +88,7 @@ module Marketing
   # id:: (Integer) -- Automation id.
   #
   # ==== Example
-  #     @data = @mints_user.get_automation_executions(1)
+  #     @data = @cxf_user.get_automation_executions(1)
   def get_automation_executions(id)
     @client.raw('get', "/marketing/automation/#{id}/executions")
   end
@@ -100,7 +100,7 @@ module Marketing
   # id:: (Integer) -- Automation id.
   #
   # ==== Example
-  #     @data = @mints_user.reset_automation(1)
+  #     @data = @cxf_user.reset_automation(1)
   def reset_automation(id)
     @client.raw('post', "/marketing/automation/#{id}/reset")
   end
@@ -116,7 +116,7 @@ module Marketing
   #     data = {
   #       options: []
   #     }
-  #     @data = @mints_user.duplicate_automation(1, data.to_json)
+  #     @data = @cxf_user.duplicate_automation(1, data.to_json)
   def duplicate_automation(id, data)
     @client.raw('post', "/marketing/automation/#{id}/duplicate", nil, data)
   end

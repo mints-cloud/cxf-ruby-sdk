@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require 'mints/helpers/mints_helper'
+require 'cxf/helpers/cxf_helper'
 require 'httparty'
 require 'json'
 require 'addressable'
 require 'redis'
-require_relative './mints/controllers/concerns/read_config_file'
+require_relative './cxf/controllers/concerns/read_config_file'
 
-module Mints
+module Cxf
   class Client
     extend ActiveSupport::Concern
-    include MintsHelper
+    include CxfHelper
 
     attr_reader :host, :mode, :api_key, :scope, :base_url
     attr_accessor :session_token, :refresh_token, :contact_token_id, :session_token_expires_at, :refresh_token_expires_at
@@ -89,7 +89,7 @@ module Mints
       full_url = "#{@host}#{base_url}#{url}#{uri}"
       response = nil
 
-      template = ERB.new File.new("#{Rails.root}/mints_config.yml.erb").read
+      template = ERB.new File.new("#{Rails.root}/cxf_config.yml.erb").read
       config = YAML.safe_load template.result(binding)
       result_from_cache = false
 
@@ -421,7 +421,7 @@ module Mints
     end
 
     def read_config_file(config_key = nil)
-      template = ERB.new File.new("#{Rails.root}/mints_config.yml.erb").read
+      template = ERB.new File.new("#{Rails.root}/cxf_config.yml.erb").read
       config = YAML.safe_load template.result(binding)
       config_key ? config[config_key] : config
     rescue StandardError

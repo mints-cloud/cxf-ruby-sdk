@@ -8,11 +8,11 @@ module Views
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_views
+  #     @data = @cxf_user.get_views
   #
   # ==== Second Example
   #     options = { sort: 'id' }
-  #     @data = @mints_user.get_views(options)
+  #     @data = @cxf_user.get_views(options)
   def get_views(options = nil)
     @client.raw('get', '/config/views', options)
   end
@@ -24,7 +24,7 @@ module Views
   # id:: (Integer) -- Export configuration id.
   #
   # ==== Example
-  #     @data = @mints_user.get_export(10)
+  #     @data = @cxf_user.get_export(10)
   def get_view(id)
     @client.raw('get', "/config/views/#{id}")
   end
@@ -42,7 +42,7 @@ module Views
   #       object_model: 'Contact',
   #       config_json: {}
   #     }
-  #     @data = @mints_user.create_export(data)
+  #     @data = @cxf_user.create_export(data)
   def create_view(data)
     @client.raw('post', '/config/views', nil, data_transform(data))
   end
@@ -61,7 +61,7 @@ module Views
   #       object_model: 'Contact',
   #       config_json: {}
   #     }
-  #     @data = @mints_user.update_export(36, data)
+  #     @data = @cxf_user.update_export(36, data)
   def update_view(id, data)
     @client.raw('put', "/config/views/#{id}", nil, data_transform(data))
   end

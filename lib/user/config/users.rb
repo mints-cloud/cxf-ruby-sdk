@@ -9,7 +9,7 @@ module Users
   # Determine if users can coach.
   #
   # ==== Example
-  #     @data = @mints_user.can_users_coach
+  #     @data = @cxf_user.can_users_coach
   def can_users_coach
     @client.raw('get', '/config/users/can_coach')
   end
@@ -18,7 +18,7 @@ module Users
   # Get a collection of users.
   #
   # ==== Example
-  #     @data = @mints_user.get_users
+  #     @data = @cxf_user.get_users
   def get_users(options)
     @client.raw('get', '/config/users', options)
   end
@@ -30,7 +30,7 @@ module Users
   # id:: (Integer) -- User id.
   #
   # ==== Example
-  #     @data = @mints_user.get_user(8)
+  #     @data = @cxf_user.get_user(8)
   def get_user(id)
     @client.raw('get', "/config/users/#{id}")
   end
@@ -50,7 +50,7 @@ module Users
   #       password: '123456',
   #       is_coach: false
   #     }
-  #     @data = @mints_user.create_user(data)
+  #     @data = @cxf_user.create_user(data)
   def create_user(data, options = nil)
     @client.raw('post', '/config/users', options, data_transform(data))
   end
@@ -70,7 +70,7 @@ module Users
   #       is_confirmed: false,
   #       roles: ''
   #     }
-  #     @data = @mints_user.update_user(14, data)
+  #     @data = @cxf_user.update_user(14, data)
   def update_user(id, data, options = nil)
     @client.raw('put', "/config/users/#{id}", options, data_transform(data))
   end

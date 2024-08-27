@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Mints
+module Cxf
 
   module Errors
 
@@ -30,7 +30,7 @@ module Mints
       private
 
       def error_class
-        "Mints::Errors::#{ERRORS[http_status.to_s] || ERRORS['default']}"
+        "Cxf::Errors::#{ERRORS[http_status.to_s] || ERRORS['default']}"
       end
     end
 

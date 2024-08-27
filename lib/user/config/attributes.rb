@@ -9,7 +9,7 @@ module Attributes
   # Get data types used in attributes.
   #
   # ==== Example
-  #     @data = @mints_user.get_attributes_data_types
+  #     @data = @cxf_user.get_attributes_data_types
   def get_attributes_data_types
     @client.raw('get', '/config/attributes/data-types')
   end
@@ -30,7 +30,7 @@ module Attributes
   # Get a collection of attributes.
   #
   # ==== Example
-  #     @data = @mints_user.get_attributes
+  #     @data = @cxf_user.get_attributes
   def get_attributes
     @client.raw('get', '/config/attributes')
   end
@@ -42,7 +42,7 @@ module Attributes
   # id:: (Integer) -- Attribute id.
   #
   # ==== Example
-  #     @data = @mints_user.get_attribute(1)
+  #     @data = @cxf_user.get_attribute(1)
   def get_attribute(id)
     @client.raw('get', "/config/attributes/#{id}")
   end
@@ -61,7 +61,7 @@ module Attributes
   #       attribute_group_id: 1,
   #       data_type_enum: 10
   #     }
-  #     @data = @mints_user.create_attribute(data)
+  #     @data = @cxf_user.create_attribute(data)
   def create_attribute(data)
     @client.raw('post', '/config/attributes', nil, data_transform(data))
   end
@@ -81,7 +81,7 @@ module Attributes
   #       attribute_group_id: 1,
   #       data_type_enum: 10
   #     }
-  #     @data = @mints_user.update_attribute(292, data)
+  #     @data = @cxf_user.update_attribute(292, data)
   def update_attribute(id, data)
     @client.raw('put', "/config/attributes/#{id}", nil, data_transform(data))
   end

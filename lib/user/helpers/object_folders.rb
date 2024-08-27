@@ -12,11 +12,11 @@ module ObjectFolders
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_object_folders
+  #     @data = @cxf_user.get_object_folders
   #
   # ==== Second Example
   #     options = { fields: "id" }
-  #     @data = @mints_user.get_object_folders(options)
+  #     @data = @cxf_user.get_object_folders(options)
   def get_object_folders(options = nil)
     @client.raw('get', '/helpers/object-folders', options)
   end
@@ -29,11 +29,11 @@ module ObjectFolders
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_object_folder(1)
+  #     @data = @cxf_user.get_object_folder(1)
   #
   # ==== Second Example
   #     options = { fields: 'id' }
-  #     @data = @mints_user.get_object_folder(1, options)
+  #     @data = @cxf_user.get_object_folder(1, options)
   def get_object_folder(id, options = nil)
     @client.raw('get', "/helpers/object-folders/#{id}", options)
   end
@@ -49,7 +49,7 @@ module ObjectFolders
   #       folder_id: 1,
   #       object_id: 1
   #     }
-  #     @data = @mints_user.create_object_folder(data)
+  #     @data = @cxf_user.create_object_folder(data)
   def create_object_folder(data)
     @client.raw('post', '/helpers/object-folders', nil, data_transform(data))
   end
@@ -65,7 +65,7 @@ module ObjectFolders
   #     data = {
   #       folder_id: 2
   #     }
-  #     @data = @mints_user.update_object_folder(1, data)
+  #     @data = @cxf_user.update_object_folder(1, data)
   def update_object_folder(id, data)
     @client.raw('put', "/helpers/object-folders/#{id}", nil, data_transform(data))
   end
@@ -77,7 +77,7 @@ module ObjectFolders
   # id:: (Integer) -- Object folder id.
   #
   # ==== Example
-  #     @data = @mints_user.delete_object_folder(2)
+  #     @data = @cxf_user.delete_object_folder(2)
   def delete_object_folder(id)
     @client.raw('delete', "/helpers/object-folders/#{id}")
   end

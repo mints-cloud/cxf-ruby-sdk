@@ -10,7 +10,7 @@ module Stories
   #
   # ==== Example
   #     data = { options: [] }
-  #     @data = @mints_user.duplicate_story(1, data.to_json)
+  #     @data = @cxf_user.duplicate_story(1, data.to_json)
   def duplicate_story(id, data)
     @client.raw('post', "/content/stories/#{id}/duplicate", nil, data)
   end
@@ -23,19 +23,19 @@ module Stories
   # use_post:: (Boolean) -- Variable to determine if the request is by 'post' or 'get' functions.
   #
   # ==== First Example
-  #     @data = @mints_user.get_stories
+  #     @data = @cxf_user.get_stories
   #
   # ==== Second Example
   #     options = {
   #       fields: 'id, slug'
   #     }
-  #     @data = @mints_user.get_stories(options)
+  #     @data = @cxf_user.get_stories(options)
   #
   # ==== Third Example
   #     options = {
   #       fields: 'id, slug'
   #     }
-  #     @data = @mints_user.get_stories(options, true)
+  #     @data = @cxf_user.get_stories(options, true)
   def get_stories(options = nil, use_post = true)
     get_query_results('/content/stories', options, use_post)
   end
@@ -48,13 +48,13 @@ module Stories
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_story(1)
+  #     @data = @cxf_user.get_story(1)
   #
   # ==== Second Example
   #     options = {
   #       fields: 'id, slug'
   #     }
-  #     @data = @mints_user.get_story(1, options)
+  #     @data = @cxf_user.get_story(1, options)
   def get_story(id, options = nil)
     @client.raw('get', "/content/stories/#{id}", options)
   end
@@ -74,7 +74,7 @@ module Stories
   #
   #     options = { fields: 'id,slug' }
   #
-  #     @data = @mints_user.create_story(data, options)
+  #     @data = @cxf_user.create_story(data, options)
   def create_story(data, options = nil)
     @client.raw('post', '/content/stories', options, data_transform(data))
   end
@@ -91,7 +91,7 @@ module Stories
   #       user_id: 1,
   #       slug: 'new-story'
   #     }
-  #     @data = @mints_user.update_story(5, data)
+  #     @data = @cxf_user.update_story(5, data)
   def update_story(id, data, options = nil)
     @client.raw('put', "/content/stories/#{id}", options, data_transform(data))
   end
@@ -103,7 +103,7 @@ module Stories
   # id:: (Integer) -- Story id.
   #
   # ==== Example
-  #     @data = @mints_user.delete_story(6)
+  #     @data = @cxf_user.delete_story(6)
   def delete_story(id)
     @client.raw('delete', "/content/stories/#{id}")
   end

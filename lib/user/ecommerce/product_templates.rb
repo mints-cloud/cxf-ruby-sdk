@@ -12,7 +12,7 @@ module ProductTemplates
   # id:: (Integer) -- Product id.
   #
   # ==== Example
-  #     @data = @mints_user.get_product_templates_support_data_from_product(1)
+  #     @data = @cxf_user.get_product_templates_support_data_from_product(1)
   def get_product_templates_support_data_from_product(id)
     @client.raw('get', "/ecommerce/product-templates/support-data/products/#{id}")
   end
@@ -24,7 +24,7 @@ module ProductTemplates
   # id:: (Integer) -- Order items group id.
   #
   # ==== Example
-  #     @data = @mints_user.get_product_templates_support_data_from_order_items_group(1)
+  #     @data = @cxf_user.get_product_templates_support_data_from_order_items_group(1)
   def get_product_templates_support_data_from_order_items_group(id)
     @client.raw('get', "/ecommerce/product-templates/support-data/order-items-groups/#{id}")
   end
@@ -33,7 +33,7 @@ module ProductTemplates
   # Get support data used in product templates.
   #
   # ==== Example
-  #     @data = @mints_user.get_product_templates_support_data
+  #     @data = @cxf_user.get_product_templates_support_data
   def get_product_templates_support_data
     @client.raw('get', '/ecommerce/product-templates/support-data')
   end
@@ -45,11 +45,11 @@ module ProductTemplates
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_product_templates
+  #     @data = @cxf_user.get_product_templates
   #
   # ==== Second Example
   #     options = { fields: 'title' }
-  #     @data = @mints_user.get_product_templates(options)
+  #     @data = @cxf_user.get_product_templates(options)
   def get_product_templates(options = nil)
     @client.raw('get', '/ecommerce/product-templates', options)
   end
@@ -62,11 +62,11 @@ module ProductTemplates
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_product_template(1)
+  #     @data = @cxf_user.get_product_template(1)
   #
   # ==== Second Example
   #     options = { fields: 'title' }
-  #     @data = @mints_user.get_product_template(1, options)
+  #     @data = @cxf_user.get_product_template(1, options)
   def get_product_template(id, options = nil)
     @client.raw('get', "/ecommerce/product-templates/#{id}", options)
   end
@@ -82,7 +82,7 @@ module ProductTemplates
   #       title: 'New Product Template',
   #       slug: 'new-product-template'
   #     }
-  #     @data = @mints_user.create_product_template(data)
+  #     @data = @cxf_user.create_product_template(data)
   def create_product_template(data)
     @client.raw('post', '/ecommerce/product-templates/', nil, data_transform(data))
   end
@@ -99,7 +99,7 @@ module ProductTemplates
   #       title: 'New Product Template Modified',
   #       slug: 'new-product-template'
   #     }
-  #     @data = @mints_user.update_product_template(3, data)
+  #     @data = @cxf_user.update_product_template(3, data)
   def update_product_template(id, data)
     @client.raw('put', "/ecommerce/product-templates/#{id}", nil, data_transform(data))
   end

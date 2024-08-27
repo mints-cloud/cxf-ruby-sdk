@@ -10,7 +10,7 @@ module Instances
   #
   # ==== Example
   #     data = { options: [] }
-  #     @data = @mints_user.duplicate_instance(1, data.to_json)
+  #     @data = @cxf_user.duplicate_instance(1, data.to_json)
   def duplicate_instance(id, data)
     @client.raw('post', "/content/instances/#{id}/duplicate", nil, data)
   end
@@ -23,19 +23,19 @@ module Instances
   # use_post:: (Boolean) -- Variable to determine if the request is by 'post' or 'get' functions.
   #
   # ==== First Example
-  #     @data = @mints_user.get_instances
+  #     @data = @cxf_user.get_instances
   #
   # ==== Second Example
   #     options = {
   #       fields: 'id, slug'
   #     }
-  #     @data = @mints_user.get_instances(options)
+  #     @data = @cxf_user.get_instances(options)
   #
   # ==== Third Example
   #     options = {
   #       fields: 'id, slug'
   #     }
-  #     @data = @mints_user.get_instances(options, true)
+  #     @data = @cxf_user.get_instances(options, true)
   def get_instances(options = nil, use_post = true)
     get_query_results('/content/instances', options, use_post)
   end
@@ -48,13 +48,13 @@ module Instances
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_instance(1)
+  #     @data = @cxf_user.get_instance(1)
   #
   # ==== Second Example
   #     options = {
   #       fields: 'id, slug'
   #     }
-  #     @data = @mints_user.get_instance(1, options)
+  #     @data = @cxf_user.get_instance(1, options)
   def get_instance(id, options = nil)
     @client.raw('get', "/content/instances/#{id}", options)
   end
@@ -74,7 +74,7 @@ module Instances
   #
   #     options = { fields: 'id,slug' }
   #
-  #     @data = @mints_user.create_instance(data, options)
+  #     @data = @cxf_user.create_instance(data, options)
   def create_instance(data, options = nil)
     @client.raw('post', '/content/instances', options, data_transform(data))
   end
@@ -102,7 +102,7 @@ module Instances
   #       user_id: 1,
   #       slug: 'new-instance'
   #     }
-  #     @data = @mints_user.update_instance(5, data)
+  #     @data = @cxf_user.update_instance(5, data)
   def update_instance(id, data, options = nil)
     @client.raw('put', "/content/instances/#{id}", options, data_transform(data))
   end
@@ -114,7 +114,7 @@ module Instances
   # id:: (Integer) -- instance id.
   #
   # ==== Example
-  #     @data = @mints_user.delete_instance(6)
+  #     @data = @cxf_user.delete_instance(6)
   def delete_instance(id)
     @client.raw('delete', "/content/instances/#{id}")
   end

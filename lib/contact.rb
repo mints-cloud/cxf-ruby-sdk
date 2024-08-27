@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
 require_relative './client'
-require_relative './mints/helpers/mints_helper'
-require_relative './mints/helpers/threads_helper'
+require_relative './cxf/helpers/cxf_helper'
+require_relative './cxf/helpers/threads_helper'
 require_relative './contact/content/content'
 require_relative './contact/config/config'
 require_relative './contact/ecommerce/ecommerce'
 
 include ActionController::Cookies
 
-module Mints
+module Cxf
   class Contact
     include ContactConfig
     include ContactContent
     include ContactEcommerce
-    include MintsHelper
+    include CxfHelper
     include ThreadsHelper
 
     attr_reader :client
@@ -25,8 +25,8 @@ module Mints
     #
     # ==== Parameters
     # host:: (String) -- It's the visitor IP.
-    # api_key:: (String) -- Mints instance api key.
-    # contact_token_id:: (Integer) --  Cookie 'mints_contact_id' value (mints_contact_token).
+    # api_key:: (String) -- Cxf instance api key.
+    # contact_token_id:: (Integer) --  Cookie 'cxf_contact_id' value (cxf_contact_token).
     #
     # ==== Return
     # Returns a Contact object
@@ -40,7 +40,7 @@ module Mints
       timeouts = {}
     )
       @contact_v1_url = '/api/contact/v1'
-      @client = Mints::Client.new(
+      @client = Cxf::Client.new(
         host,
         api_key,
         'contact',
@@ -69,7 +69,7 @@ module Mints
     #       last_name: 'Last Name',
     #       password: 'password'
     #     }
-    #     @mints_contact.register(data);
+    #     @cxf_contact.register(data);
     def register(data)
       @client.raw('post', '/contacts/register', nil, data_transform(data))
     end
@@ -83,7 +83,7 @@ module Mints
     # password:: (String) -- The password of the email.
     #
     # ==== Example
-    #     @mints_contact.login('email@example.com', 'password')
+    #     @cxf_contact.login('email@example.com', 'password')
     def login(email, password)
       data = {
         email: email,
@@ -106,7 +106,7 @@ module Mints
     #
     # ==== Example
     #     data = { email: 'email@example.com' }
-    #     @mints_contact.recover_password(data)
+    #     @cxf_contact.recover_password(data)
     def recover_password(data)
       @client.raw('post', '/contacts/recover-password', nil, data_transform(data))
     end
@@ -125,7 +125,7 @@ module Mints
     #       password_confirmation: 'password',
     #       token: '644aa3aa0831d782cc42e42b11aedea9a2234389af4f429a8d96651295ecfa09'
     #     }
-    #     @mints_contact.reset_password(data)
+    #     @cxf_contact.reset_password(data)
     def reset_password(data)
       @client.raw('post', '/contacts/reset-password', nil, data_transform(data))
     end
@@ -145,7 +145,7 @@ module Mints
     # token:: (String) -- The email token that will be used to log in.
     #
     # ==== Example
-    #     @mints_contact.magic_link_login(
+    #     @cxf_contact.magic_link_login(
     #       'd8618c6d-a165-41cb-b3ec-d053cbf30059:zm54HtRdfHED8dpILZpjyqjPIceiaXNLfOklqM92fveBS0nDtyPYBlI4CPlPe3zq'
     #     )
     def magic_link_login(token)
@@ -167,10 +167,10 @@ module Mints
     # maxVisits:: (Integer) -- The maximum number of uses of a token.
     #
     # ==== First Example
-    #     @mints_contact.send_magic_link('email@example.com', 'template_slug')
+    #     @cxf_contact.send_magic_link('email@example.com', 'template_slug')
     #
     # ==== Second Example
-    #     @mints_contact.send_magic_link('+526561234567', 'template_slug', '', 1440, 3, 'whatsapp')
+    #     @cxf_contact.send_magic_link('+526561234567', 'template_slug', '', 1440, 3, 'whatsapp')
     def send_magic_link(email_or_phone, template_slug, redirect_url = '', life_time = 1440, max_visits = nil, driver = 'email')
       data = {
         driver: driver,
@@ -194,17 +194,17 @@ module Mints
     # Get contact logged info.
     #
     # ==== Parameters
-    # # options:: (Hash) -- List of {Resource collection Options}[#class-Mints::Pub-label-Resource+collections+options+] shown above can be used as parameter.
+    # # options:: (Hash) -- List of {Resource collection Options}[#class-Cxf::Pub-label-Resource+collections+options+] shown above can be used as parameter.
     #
     # ==== First Example
-    #     @data = @mints_contact.me
+    #     @data = @cxf_contact.me
     #
     # ==== Second Example
     #     options = {
     #       attributes: true,
     #       taxonomies: true
     #     }
-    #     @data = @mints_contact.me(options)
+    #     @data = @cxf_contact.me(options)
     def me(options = nil)
       @client.raw('get', '/me', options, nil, @contact_v1_url)
     end
@@ -214,7 +214,7 @@ module Mints
     # Get contact logged status.
     #
     # ==== Example
-    #     @data = @mints_contact.status
+    #     @data = @cxf_contact.status
     def status
       @client.raw('get', '/status', nil, nil, @contact_v1_url)
     end
@@ -231,7 +231,7 @@ module Mints
     #       given_name: 'Given Name',
     #       last_name: 'Last Name'
     #     }
-    #     @data = @mints_contact.update(data)
+    #     @data = @cxf_contact.update(data)
     def update(data)
       @client.raw('put', '/update', nil, data_transform(data), @contact_v1_url)
     end
@@ -241,7 +241,7 @@ module Mints
     # Ends a contact session previously logged.
     #
     # ==== Example
-    #     @data = @mints_contact.logout
+    #     @data = @cxf_contact.logout
     def logout
       if session_token?
         response = @client.raw('post', '/logout', nil, nil, @contact_v1_url)
@@ -260,7 +260,7 @@ module Mints
     #
     # ==== Example
     #     data = { password: 'new_password' }
-    #     @data = @mints_contact.change_password(data)
+    #     @data = @cxf_contact.change_password(data)
     def change_password(data)
       @client.raw('post', '/change-password', nil, data_transform(data), @contact_v1_url)
     end
@@ -271,11 +271,11 @@ module Mints
 
     private
 
-    include MintsHelper
+    include CxfHelper
 
     def session_token?
       unless @client.session_token
-        Mints::DynamicError.new(@client, 'Unauthorized', 'Attach contact session token', 401, nil)
+        Cxf::DynamicError.new(@client, 'Unauthorized', 'Attach contact session token', 401, nil)
       end
 
       true

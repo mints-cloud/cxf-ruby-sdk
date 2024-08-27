@@ -12,13 +12,13 @@ module Skus
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_skus
+  #     @data = @cxf_user.get_skus
   #
   # ==== Second Example
   #     options = {
   #       fields: 'sku'
   #     }
-  #     @data = @mints_user.get_skus(options)
+  #     @data = @cxf_user.get_skus(options)
   def get_skus(options = nil)
     @client.raw('get', '/ecommerce/skus', options)
   end
@@ -31,13 +31,13 @@ module Skus
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_sku(1)
+  #     @data = @cxf_user.get_sku(1)
   #
   # ==== Second Example
   #     options = {
   #       fields: 'title, sku'
   #     }
-  #     @data = @mints_user.get_sku(1, options)
+  #     @data = @cxf_user.get_sku(1, options)
   def get_sku(id, options = nil)
     @client.raw('get', "/ecommerce/skus/#{id}", options)
   end
@@ -55,7 +55,7 @@ module Skus
   #       slug: 'new-sku',
   #       product_id: 1
   #     }
-  #     @data = @mints_user.create_sku(data)
+  #     @data = @cxf_user.create_sku(data)
   def create_sku(data, options = nil)
     @client.raw('post', '/ecommerce/skus', options, data_transform(data))
   end
@@ -71,7 +71,7 @@ module Skus
   #     data = {
   #       sku: 'NEW-SKU-XXXIX'
   #     }
-  #     @data = @mints_user.update_sku(531, data)
+  #     @data = @cxf_user.update_sku(531, data)
   def update_sku(id, data)
     @client.raw('put', "/ecommerce/skus/#{id}", nil, data_transform(data))
   end
@@ -83,7 +83,7 @@ module Skus
   # id:: (Integer) -- Sku id.
   #
   # ==== Example
-  #     @data = @mints_user.delete_sku(531)
+  #     @data = @cxf_user.delete_sku(531)
   def delete_sku(id)
     @client.raw('delete', "/ecommerce/skus/#{id}")
   end

@@ -22,7 +22,7 @@ module Content
   # Get public images url.
   #
   # ==== Example
-  #     @data = @mints_user.get_public_images_url
+  #     @data = @cxf_user.get_public_images_url
   def get_public_images_url
     @client.raw('get', '/content/public-images-url')
   end
@@ -38,11 +38,11 @@ module Content
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_keywords
+  #     @data = @cxf_user.get_keywords
   #
   # ==== Second Example
   #     options = { fields: 'title' }
-  #     @data = @mints_user.get_keywords(options)
+  #     @data = @cxf_user.get_keywords(options)
   def get_keywords(options = nil)
     @client.raw('get', '/content/keywords', options)
   end
@@ -67,7 +67,7 @@ module Content
   #     data = {
   #       title: 'New Keyword'
   #     }
-  #     @data = @mints_user.create_keyword(data.to_json)
+  #     @data = @cxf_user.create_keyword(data.to_json)
   def create_keyword(data)
     @client.raw('post', '/content/keywords', nil, data)
   end
@@ -97,11 +97,11 @@ module Content
   # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
   #
   # ==== First Example
-  #     @data = @mints_user.get_stages
+  #     @data = @cxf_user.get_stages
   #
   # ==== Second Example
   #     options = { fields: 'title' }
-  #     @data = @mints_user.get_stages(options)
+  #     @data = @cxf_user.get_stages(options)
   def get_stages(options = nil)
     @client.raw('get', '/content/stages', options)
   end
@@ -113,7 +113,7 @@ module Content
   # id:: (Integer) -- Stage id.
   #
   # ==== Example
-  #     @data = @mints_user.get_stage(1)
+  #     @data = @cxf_user.get_stage(1)
   def get_stage(id)
     @client.raw('get', "/content/stages/#{id}")
   end
@@ -138,7 +138,7 @@ module Content
   #       config_json: config_json.to_json,
   #       event_json: event_json.to_json
   #     }
-  #     @data = @mints_user.create_stage(data.to_json)
+  #     @data = @cxf_user.create_stage(data.to_json)
   def create_stage(data)
     @client.raw('post', '/content/stages', nil, data)
   end
@@ -166,7 +166,7 @@ module Content
   #       config_json: config_json.to_json,
   #       event_json: event_json.to_json
   #     }
-  #     @data = @mints_user.update_stage(3, data.to_json)
+  #     @data = @cxf_user.update_stage(3, data.to_json)
   def update_stage(id, data)
     # TODO: Inform StageController.update method has been modified
     @client.raw('put', "/content/stages/#{id}", nil, data)
