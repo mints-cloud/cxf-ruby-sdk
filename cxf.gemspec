@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name = 'cxf'
   s.version = '0.0.1'
   s.date = '2024-08-16'
-  s.summary = 'Mints gem allows to connect your Rails App to MINTS.CLOUD'
+  s.summary = 'CXF gem allows to connect your Rails App to the Customer Experience Framework.'
   s.authors = 'Ruben Gomez Garcia, Omar Mora, Luis Payan, Oscar Castillo, Fabian Garcia'
   s.homepage = 'https://github.com/rubengomez/cxf-ruby-sdk'
   s.required_ruby_version = '>= 2.6.0'

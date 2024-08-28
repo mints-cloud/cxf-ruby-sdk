@@ -5,153 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab48e04c-6525-45e5-befb-62ecb24dbdcf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cxf.gemspec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/cxf/controllers/concerns/cxf_clients.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/contact/config/appointments.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/contact/content/conversations.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/contact/ecommerce/order_item_groups.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/contact/ecommerce/order_items.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/contact/ecommerce/orders.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/contact/ecommerce/vouchers.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pub/config/attributes.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pub/config/public_folders.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pub/config/tags.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pub/config/taxonomies.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pub/content/assets.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pub/content/content_bundles.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pub/content/content_instance_versions.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pub/content/content_instances.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pub/content/forms.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pub/content/stories.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pub/content/story_versions.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pub/ecommerce/locations.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/pub/ecommerce/orders.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/threads/make_multiple_request.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/api_key.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/appointments.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/attribute_groups.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/attributes.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/calendar.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/public_folders.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/relationships.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/roles.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/seeds.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/system_settings.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/tags.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/taxonomies.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/teams.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/config/users.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/contacts/contacts.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/content/assets.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/content/content.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/content/content_instances.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/content/content_templates.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/content/conversations.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/content/dam.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/content/forms.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/content/message_templates.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/content/messages.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/content/pages.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/content/stories.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/content/story_templates.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/content/story_versions.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/crm/companies.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/crm/contacts.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/crm/deals.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/crm/favorites.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/crm/segments.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/crm/users.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/crm/workflow_step_objects.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/crm/workflow_steps.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/crm/workflows.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/item_prices.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/locations.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/order_item_groups.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/order_statuses.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/orders.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/price_list.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/product_templates.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/product_variations.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/products.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/skus.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/taxes.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/variant_options.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/variant_values.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/ecommerce/vouchers.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/helpers/helpers.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/helpers/object_activities.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/helpers/object_folders.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/helpers/user_folders.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/marketing/marketing.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/user/profile/profile.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/client.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/client.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/contact.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/contact.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/errors.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/errors.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generators/mints_assets_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generators/cxf_assets_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generators/mints_config.yml.erb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generators/cxf_config.yml.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generators/mints_contact_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generators/cxf_contact_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generators/mints_files_generator.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generators/cxf_files_generator.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generators/mints_public_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generators/cxf_public_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generators/mints_user_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generators/cxf_user_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cxf.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints/controllers/admin_base_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cxf/controllers/admin_base_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints/controllers/base_api_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cxf/controllers/base_api_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints/controllers/base_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cxf/controllers/base_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints/controllers/concerns/mints_clients.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints/controllers/concerns/read_config_file.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cxf/controllers/concerns/read_config_file.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints/controllers/contact_api_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cxf/controllers/contact_api_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints/controllers/public_api_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cxf/controllers/public_api_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints/controllers/user_api_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cxf/controllers/user_api_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints/helpers/contact_auth_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cxf/helpers/contact_auth_helper.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints/helpers/mints_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cxf/helpers/cxf_helper.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints/helpers/proxy_controllers_methods.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cxf/helpers/proxy_controllers_methods.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints/helpers/threads_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cxf/helpers/threads_helper.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mints/helpers/user_auth_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cxf/helpers/user_auth_helper.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pub.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pub.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pub/content/assets.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pub/content/assets.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/config/attribute_groups.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/config/attribute_groups.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/config/attributes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/config/attributes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/config/calendars.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/config/calendars.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/config/relationships.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/config/relationships.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/config/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/config/seeds.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/config/system_settings.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/config/system_settings.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/config/tags.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/config/tags.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/config/taxonomies.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/config/taxonomies.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/config/users.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/config/users.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/config/views.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/config/views.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/contacts/contacts.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/contacts/contacts.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/content/assets.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/content/assets.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/content/block_templates.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/content/block_templates.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/content/blocks.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/content/blocks.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/content/content.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/content/content.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/content/instances.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/content/instances.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/content/print_versions.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/content/print_versions.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/content/stories.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/content/stories.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/content/story_templates.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/content/story_templates.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/content/templates.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/content/templates.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/crm/companies.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/crm/companies.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/crm/contacts.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/crm/contacts.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/ecommerce/item_prices.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/ecommerce/item_prices.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/ecommerce/locations.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/ecommerce/locations.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/ecommerce/price_lists.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/ecommerce/price_lists.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/ecommerce/product_templates.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/ecommerce/product_templates.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/ecommerce/product_variations.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/ecommerce/product_variations.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/ecommerce/product_versions.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/ecommerce/product_versions.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/ecommerce/products.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/ecommerce/products.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/ecommerce/skus.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/ecommerce/skus.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/ecommerce/taxes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/ecommerce/taxes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/ecommerce/variant_options.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/ecommerce/variant_options.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/ecommerce/variant_values.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/ecommerce/variant_values.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/ecommerce/vouchers.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/ecommerce/vouchers.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/helpers/helpers.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/helpers/helpers.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/helpers/object_activities.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/helpers/object_activities.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/helpers/object_folders.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/helpers/object_folders.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/helpers/user_folders.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/helpers/user_folders.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/marketing/marketing.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/marketing/marketing.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/user/profile/profile.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/user/profile/profile.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mints.gemspec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cxf.gemspec" beforeDir="false" afterPath="$PROJECT_DIR$/cxf.gemspec" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,26 +24,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/luis/cxf-ruby-sdk/lib/generators&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
-    &quot;ruby.structure.view.model.defaults.configured&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/luis/cxf-ruby-sdk",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ruby.rails.projectView.checked": "true",
+    "ruby.structure.view.model.defaults.configured": "true",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/lib/generators" />
     </key>
   </component>
@@ -212,7 +68,9 @@
       <workItem from="1724469116136" duration="6000" />
       <workItem from="1724691182120" duration="14000000" />
       <workItem from="1724779323522" duration="5115000" />
-      <workItem from="1724785263510" duration="1417000" />
+      <workItem from="1724785263510" duration="2181000" />
+      <workItem from="1724884237667" duration="168000" />
+      <workItem from="1724886287217" duration="241000" />
     </task>
     <servers />
   </component>
