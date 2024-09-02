@@ -13,7 +13,7 @@ module Cxf
     include CxfHelper
 
     attr_reader :host, :mode, :api_key, :scope, :base_url
-    attr_accessor :session_token, :refresh_token, :contact_token_id, :session_token_expires_at, :refresh_token_expires_at
+    attr_accessor :session_token, :refresh_token, :contact_token_id, :session_token_expires_at, :refresh_token_expires_at, :user_agent
 
     def initialize(
       host,
@@ -36,6 +36,7 @@ module Cxf
       @contact_token_id = contact_token_id
       @visit_id = visit_id
       @debug = debug
+      @user_agent = nil
 
       config = read_config_file('sdk') || {}
 
@@ -360,6 +361,7 @@ module Cxf
       h['ContactToken'] = @contact_token_id if @contact_token_id
       h['Visit-Id'] = @visit_id if @visit_id
       h['Authorization'] = "Bearer #{@session_token}" if @session_token
+      h['User-Agent'] = @user_agent if @user_agent
 
       if headers
         headers.each do |k, v|

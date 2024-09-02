@@ -51,7 +51,7 @@ module Cxf
 
     attr_reader :client
 
-    def initialize(host, api_key, session_token = nil, refresh_token = nil, debug = false, timeouts = {})
+    def initialize(host, api_key, session_token = nil, refresh_token = nil, debug = false, user_agent = nil, timeouts = {})
       @client = Cxf::Client.new(
         host,
         api_key,
@@ -61,8 +61,10 @@ module Cxf
         nil,
         nil,
         debug,
-        timeouts
+        timeouts,
       )
+
+      @client.user_agent = user_agent
     end
 
     def login(email, password)

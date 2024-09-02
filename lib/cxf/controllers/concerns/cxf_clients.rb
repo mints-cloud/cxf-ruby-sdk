@@ -45,13 +45,15 @@ module CxfClients
     # Initialize cxf pub client, credentials taken from cxf_config.yml.erb file
     visit_id = cookies[:cxf_visit_id]
     contact_token_id = cookies[:cxf_contact_id]
+    user_agent = request.user_agent
 
     @cxf_pub = Cxf::Pub.new(
       @host,
       @api_key,
       contact_token_id,
       visit_id,
-      @debug
+      @debug,
+      user_agent
     )
   end
 
@@ -63,13 +65,15 @@ module CxfClients
     contact_session_token = cookies[:cxf_contact_session_token]
     contact_refresh_token = cookies[:cxf_contact_refresh_token]
     contact_token_id = cookies[:cxf_contact_id]
+    user_agent = request.user_agent
     @cxf_contact = Cxf::Contact.new(
       @host,
       @api_key,
       contact_session_token,
       contact_refresh_token,
       contact_token_id,
-      @debug
+      @debug,
+      user_agent
     )
   end
 
@@ -80,12 +84,14 @@ module CxfClients
     # Initialize cxf user client
     user_session_token = cookies[:cxf_user_session_token]
     user_refresh_token = cookies[:cxf_user_refresh_token]
+    user_agent = request.user_agent
     @cxf_user = Cxf::User.new(
       @host,
       @api_key,
       user_session_token,
       user_refresh_token,
-      @debug
+      @debug,
+      user_agent
     )
   end
 
@@ -94,11 +100,14 @@ module CxfClients
   # Initialize the service account client
   def set_cxf_service_account_client
     # Initialize service account client
+    user_agent = request.user_agent
     @cxf_service_account = Cxf::User.new(
       @host,
       @api_key,
       @api_key,
-      @debug
+      @api_key,
+      @debug,
+      user_agent
     )
   end
 end
