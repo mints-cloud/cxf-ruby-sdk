@@ -37,6 +37,7 @@ module Cxf
       refresh_token = nil,
       contact_token_id = nil,
       debug = false,
+      user_agent = nil,
       timeouts = {}
     )
       @contact_v1_url = '/api/contact/v1'
@@ -51,6 +52,8 @@ module Cxf
         debug,
         timeouts
       )
+
+      @client.user_agent = user_agent
     end
 
     ### V1/CONTACTS ###

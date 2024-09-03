@@ -87,6 +87,7 @@ module Cxf
       contact_token_id = nil,
       visit_id = nil,
       debug = false,
+      user_agent = nil,
       timeouts = {}
     )
       @client = Cxf::Client.new(
@@ -99,6 +100,8 @@ module Cxf
         debug,
         timeouts
       )
+
+      @client.user_agent = user_agent
     end
 
     ##

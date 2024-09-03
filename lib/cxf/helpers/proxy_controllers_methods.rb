@@ -25,8 +25,7 @@ module ProxyControllersMethods
       'host' => host,
       'ApiKey' => @api_key.to_s,
       'Content-Type' => 'application/json',
-      'Accept' => 'application/json',
-      'SDK' => 'true',
+      'Accept' => 'application/json'
     }
 
     if %w[contact user].include? controller_type
