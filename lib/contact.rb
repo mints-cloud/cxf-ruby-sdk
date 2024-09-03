@@ -209,7 +209,7 @@ module Cxf
     #     }
     #     @data = @cxf_contact.me(options)
     def me(options = nil)
-      @client.raw('get', '/me', options, nil, @contact_v1_url)
+      @client.raw('get', '/contacts/me', options, nil)
     end
 
     ##
