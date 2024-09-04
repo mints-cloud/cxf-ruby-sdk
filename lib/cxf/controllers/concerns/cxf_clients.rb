@@ -64,7 +64,7 @@ module CxfClients
     # Initialize cxf contact client
     contact_session_token = cookies[:cxf_contact_session_token]
     contact_refresh_token = cookies[:cxf_contact_refresh_token]
-    contact_token_id = cookies[:cxf_contact_id]
+    contact_token_id = cookies[:cxf_contact_id] || nil
     user_agent = request.user_agent
     @cxf_contact = Cxf::Contact.new(
       @host,

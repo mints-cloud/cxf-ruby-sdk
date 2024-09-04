@@ -149,7 +149,7 @@ module Cxf
         replace_tokens(response)
       end
 
-      verify_response_status(response, config['sdk']['ignore_http_errors'])
+      response = verify_response_status(response, config['sdk']['ignore_http_errors'])
 
       begin
         if @debug
@@ -381,16 +381,24 @@ module Cxf
 
         if !is_success and !ignore_http_errors
           title = "Request failed with status #{http_status}"
-          detail = response&.response&.message || 'Unknown error'
+          detail = response&.parsed_response["message"] ||response&.response&.message || 'Unknown error'
 
           puts "Error detected: #{http_status}" if @debug
           error_class = Errors::DynamicError.new(self, title, detail, http_status, response&.parsed_response)
 
           raise error_class if @debug
-
-          raise error_class.error
+          response = JSON.generate(
+            {
+              'error' => {
+                'title' => title,
+                'status' => http_status
+              },
+              'message' => detail
+            }
+          )
         end
       end
+      response
     end
 
     # Timeouts methods

@@ -11,8 +11,8 @@ module ContactAuthHelper
     if response.key? 'data'
       session_token = response['data']['session_token']
       refresh_token = response['data']['refresh_token']
+      id_token = response['data']['contact_token'] || response['data']['id_token'] || nil
     end
-    # id_token = response['contact']['contact_token'] ? response['contact']['contact_token'] : response['contact']['id_token']
     # Set a permanent cookie with the session token
     cookies.permanent[:cxf_contact_session_token] = { value: session_token, secure: true, httponly: true }
     cookies.permanent[:cxf_contact_refresh_token] = { value: refresh_token, secure: true, httponly: true }
