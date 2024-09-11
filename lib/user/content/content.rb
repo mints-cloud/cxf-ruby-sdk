@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 require_relative './assets'
-require_relative './stories'
-require_relative './print_versions'
-require_relative './story_templates'
 require_relative './blocks'
 require_relative './block_templates'
+require_relative './content_bundles'
+require_relative './content_prints'
 require_relative './instances'
+require_relative './print_versions'
 require_relative './templates'
 
 module Content
   include Assets
-  include Stories
-  include PrintVersions
-  include StoryTemplates
   include Blocks
   include BlockTemplates
+  include ContentBundles
+  include ContentPrints
   include Instances
+  include PrintVersions
   include Templates
 
   # === Get public images url.

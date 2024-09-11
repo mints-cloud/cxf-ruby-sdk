@@ -150,7 +150,6 @@ module Cxf
       end
 
       response = verify_response_status(response, config['sdk']['ignore_http_errors'])
-
       begin
         if @debug
           response_from = if result_from_cache
@@ -383,10 +382,12 @@ module Cxf
           title = "Request failed with status #{http_status}"
           detail = response&.parsed_response["message"] ||response&.response&.message || 'Unknown error'
 
-          puts "Error detected: #{http_status}" if @debug
-          error_class = Errors::DynamicError.new(self, title, detail, http_status, response&.parsed_response)
+          if @debug
+            puts "Error detected: #{http_status}"
+            error_class = Errors::DynamicError.new(self, title, detail, http_status, response&.parsed_response)
+            raise error_class
+          end
 
-          raise error_class if @debug
           response = JSON.generate(
             {
               'error' => {
