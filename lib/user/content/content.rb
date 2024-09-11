@@ -2,6 +2,7 @@
 require_relative './assets'
 require_relative './stories'
 require_relative './print_versions'
+require_relative './print_versions_sa'
 require_relative './story_templates'
 require_relative './blocks'
 require_relative './block_templates'
@@ -10,12 +11,16 @@ require_relative './templates'
 
 module Content
   include Assets
-  include Stories
-  include PrintVersions
-  include StoryTemplates
   include Blocks
   include BlockTemplates
+  include ContentBundles
+  include ContentPrints
+  include ContentPrintsSA
   include Instances
+  include PrintVersions
+  include PrintVersionsSA
+  include Stories
+  include StoryTemplates
   include Templates
 
   # === Get public images url.

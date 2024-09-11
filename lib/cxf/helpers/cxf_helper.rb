@@ -9,11 +9,19 @@ module CxfHelper
   # options:: (Hash) -- List of {Resource collection Options}[#class-Cxf::User-label-Resource+collections+options+] shown above can be used as parameter.
   # use_post:: (Boolean) -- Variable to determine if the request is by 'post' or 'get' functions.
   #
-  def get_query_results(url, options = nil, use_post = true)
+  def get_query_results(url, options = nil, use_post = true, base_url = nil)
     if use_post
-      @client.raw('post', "#{url}/query", options)
+      if base_url
+        @client.raw('post', "#{url}/query", options, nil, base_url)
+      else
+        @client.raw('post', "#{url}/query", options)
+      end
     else
-      @client.raw('get', url, options)
+      if base_url
+        @client.raw('get', url, options, nil, base_url)
+      else
+        @client.raw('get', url, options)
+      end
     end
   end
 

@@ -95,6 +95,7 @@ module Cxf
         api_key,
         'public',
         nil,
+        nil,
         contact_token_id,
         visit_id,
         debug,
