@@ -10,7 +10,7 @@ module PublicAssets
   #
   # ==== Example
   #     @data = @cxf_pub.get_asset_info("asset_slug")
-  def get_asset_info(slug)
-    @client.raw('get', "/content/asset-info/#{slug}")
+  def get_public_asset(slug)
+    @client.raw('get', "public-assets/#{slug}", nil, nil, '/')
   end
 end

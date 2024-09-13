@@ -103,9 +103,9 @@ module CxfClients
     user_agent = request.user_agent
     @cxf_service_account = Cxf::User.new(
       @host,
-      @api_key,
-      @api_key,
-      @api_key,
+      @api_key,   # api token
+      @api_key,   # session token
+      @api_key,   # refresh token
       @debug,
       user_agent
     )
