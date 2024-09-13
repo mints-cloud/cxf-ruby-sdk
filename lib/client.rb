@@ -80,7 +80,7 @@ module Cxf
         found_options_with_encoding = options.keys.select { |key| need_encoding.include?(key.to_s.downcase) and options[key]&.class == Hash }
 
         found_options_with_encoding.each do |key|
-          options[key] = CGI::escape(Base64.encode64(options[key].to_json))
+          options[key] = Base64.encode64(options[key].to_json)
         end
 
         uri = Addressable::URI.new
