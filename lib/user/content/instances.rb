@@ -90,6 +90,43 @@ module Instances
     @client.raw('post', "/content/instances/#{id}/print-version", options, data_transform(data))
   end
 
+  def add_variant_value_to_instance(id, data, options = nil)
+    @client.raw('post', "/content/instances/#{id}/variant-value", options, data_transform(data))
+  end
+
+  # === Delete variant value from instance.
+  # Delete a variant value from a instance.
+  #
+  # ==== Parameters
+  # id:: (Integer) -- instance id.
+  # data:: (Hash) -- Data to be submitted.
+  # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
+  def delete_variant_value_from_instance(id, data, options = nil)
+    @client.raw('delete', "/content/instances/#{id}/variant-value", options, data_transform(data))
+  end
+
+  # === Get instance variations.
+  # Get a collection of instance variations.
+  #
+  # ==== Parameters
+  # id:: (Integer) -- instance id.
+  # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
+  #
+  def get_intance_variations(id, options = nil)
+    @client.raw('get', "/content/instances/#{id}/build-variations", options)
+  end
+
+  # === Create item code for instance.
+  # Create a item code for a instance with data.
+  #
+  # ==== Parameters
+  # id:: (Integer) -- instance id.
+  # data:: (Hash) -- Data to be submitted.
+  # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
+  def create_item_code_for_instance(id, data, options = nil)
+    @client.raw('post', "/content/instances/#{id}/item-codes", options, data_transform(data))
+  end
+
   # === Update instance.
   # Update a instance info.
   #

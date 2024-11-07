@@ -259,7 +259,7 @@ module Cxf
     def replacements
       [
         { old_value: '_', new_value: '-' },
-        { old_value: 'people', new_value: 'crm' },
+        { old_value: 'people', new_value: 'customer-data' },
         { old_value: 'store', new_value: 'ecommerce' }
       ]
     end

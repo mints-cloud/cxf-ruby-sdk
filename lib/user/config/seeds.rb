@@ -1,55 +1,11 @@
 # frozen_string_literal: true
 
 module Seeds
-  ##
-  # == Seeds
-  #
-  # === Apply seeds.
-  # Apply seeds.
-  #
-  # ==== Example
-  #
-  def apply_seeds(data, async: false)
-    url = '/config/seeds'
-    url = "#{url}?async" if async
-    @client.raw('post', url, nil, data)
+  def process_seed(data)
+    @client.raw('post', "/config/seeds", nil, data_transform(data))
   end
 
-  # === Get seed processes.
-  # Get a collection of seed processes.
-  #
-  # ==== Parameters
-  # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
-  # use_post:: (Boolean) -- Variable to determine if the request is by 'post' or 'get' functions.
-  #
-  # ==== First Example
-  #     @data = @cxf_user.get_seed_processes
-  #
-  # ==== Second Example
-  #     options = {
-  #       fields: 'id'
-  #     }
-  #     @data = @cxf_user.get_seed_processes(options)
-  def get_seed_processes(options = nil)
-    @client.raw('post', '/config/seed-processes', options)
-  end
-
-  # === Get seed process.
-  # Get a seed process info.
-  #
-  # ==== Parameters
-  # id:: (Integer) -- Seed process id.
-  # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
-  #
-  # ==== First Example
-  #     @data = @cxf_user.get_seed_process(1)
-  #
-  # ==== Second Example
-  #     options = {
-  #       fields: 'id, title'
-  #     }
-  #     @data = @cxf_user.get_seed_process(1, options)
-  def get_seed_process(id, options = nil)
-    @client.raw('get', "/config/seed-processes/#{id}", options)
+  def get_seed_process_status(id)
+    @client.raw('get', "/config/seeds/jobs/#{id}")
   end
 end

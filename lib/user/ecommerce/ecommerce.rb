@@ -1,27 +1,11 @@
 # frozen_string_literal: true
 
-require_relative './item_prices'
-require_relative './price_lists'
-require_relative './product_templates'
-require_relative './product_variations'
-require_relative './products'
-require_relative './product_versions'
-require_relative './skus'
-require_relative './taxes'
-require_relative './variant_options'
-require_relative './variant_values'
-require_relative './vouchers'
+require_relative './item_codes'
+require_relative './orders'
+require_relative './order_templates'
 
 module Ecommerce
-  include ItemPrices
-  include PriceList
-  include ProductTemplates
-  include ProductVariations
-  include Products
-  include ProductVersions
-  include Skus
-  include Taxes
-  include VariantOptions
-  include VariantValues
-  include Vouchers
+  include ItemCodes
+  include Orders
+  include OrderTemplates
 end
