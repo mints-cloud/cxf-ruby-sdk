@@ -3,14 +3,13 @@
 require_relative './client'
 require_relative './cxf/helpers/cxf_helper'
 require_relative './cxf/helpers/threads_helper'
-require_relative './user/crm/crm'
+require_relative './user/customer-data/customer_data'
 require_relative './user/content/content'
 require_relative './user/marketing/marketing'
 require_relative './user/ecommerce/ecommerce'
 require_relative './user/config/config'
 require_relative './user/profile/profile'
 require_relative './user/helpers/helpers'
-require_relative './user/contacts/contacts'
 
 module Cxf
   ##
@@ -38,7 +37,7 @@ module Cxf
   # * +sort+ - [String] indicates the columns that will be selected
 
   class User
-    include CRM
+    include CustomerData
     include Content
     include Marketing
     include Ecommerce

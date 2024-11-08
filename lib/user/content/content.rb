@@ -7,6 +7,9 @@ require_relative './content_prints'
 require_relative './instances'
 require_relative './print_versions'
 require_relative './templates'
+require_relative './bundles'
+require_relative './message_templates'
+require_relative './prints'
 
 module Content
   include Assets
@@ -17,6 +20,9 @@ module Content
   include Instances
   include PrintVersions
   include Templates
+  include Bundles
+  include MessageTemplates
+  include Prints
 
   # === Get public images url.
   # Get public images url.

@@ -54,6 +54,34 @@ module Templates
     @client.raw('post', '/content/templates', options, data_transform(data))
   end
 
+  # === Create variant option for template.
+  # Create a variant option for a template with data.
+  #
+  # ==== Parameters
+  # id:: (Integer) -- template id.
+  # data:: (Hash) -- Data to be submitted.
+  # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
+  #
+  # ==== Example
+  #     data = {
+  #       variant_option_id: 1
+  #     }
+  #     @data = @cxf_user.create_template_variant_option(1, data)
+  def create_template_variant_option(id, data, options = nil)
+    @client.raw('post', "/content/templates/#{id}/variant-option", options, data_transform(data))
+  end
+
+  # === Delete variant option from template.
+  # Delete a variant option from a template.
+  #
+  # ==== Parameters
+  # id:: (Integer) -- template id.
+  # data:: (Hash) -- Data to be submitted.
+  # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
+  def delete_template_variant_option(id, data, options = nil)
+    @client.raw('delete', "/content/templates/#{id}/variant-option", options, data_transform(data))
+  end
+
   # === Update template.
   # Update a template info.
   #

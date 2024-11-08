@@ -13,7 +13,7 @@ module SystemSettings
   #     }
   #     @data = @cxf_user.get_settings_by_keys(options)
   def get_settings_by_keys(options)
-    @client.raw('get', '/config/settings/by-keys', options)
+    @client.raw('get', '/config/system-settings/by-keys', options)
   end
 
   # === Get settings.
@@ -22,7 +22,7 @@ module SystemSettings
   # ====  Example
   #     @data = @cxf_user.get_settings
   def get_settings
-    @client.raw('get', '/config/settings')
+    @client.raw('get', '/config/system-settings')
   end
 
   # === Create setting.
@@ -37,7 +37,7 @@ module SystemSettings
   #     }
   #     @data = @cxf_user.create_setting(data)
   def create_setting(data)
-    @client.raw('post', '/config/settings', nil, data_transform(data))
+    @client.raw('post', '/config/system-settings', nil, data_transform(data))
   end
 
   # === Clear tag.
@@ -48,7 +48,7 @@ module SystemSettings
   #
   # ==== Example
   #     @data = @cxf_user.clear_tag(1)
-  def clear_tag(tag)
-    @client.raw('get', "/config/settings/tags/#{tag}/clear")
+  def clear_settings_cache
+    @client.raw('post', "/config/system-settings/clear-cache")
   end
 end

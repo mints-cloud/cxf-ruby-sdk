@@ -65,4 +65,28 @@ module Views
   def update_view(id, data)
     @client.raw('put', "/config/views/#{id}", nil, data_transform(data))
   end
+
+  # === Get view query.
+  # Get a view query.
+  #
+  # ==== Parameters
+  # id_or_slug:: (String) -- The id or slug of the view to be queried.
+  #
+  # ==== Example
+  #     @data = @cxf_user.get_view_query('view-slug')
+  def get_view_query(id_or_slug)
+    @client.raw('get', "/config/views/#{id_or_slug}/query")
+  end
+
+  # === Export view to BigQuery.
+  # Export a view to BigQuery using its id or slug.
+  #
+  # ==== Parameters
+  # id_or_slug:: (String) -- The id or slug of the view to be exported.
+  #
+  # ==== Example
+  #     @data = @cxf_user.export_view_to_bigquery('view-slug')
+  def export_view_to_bigquery(id_or_slug)
+    @client.raw('post', "/config/views/#{id_or_slug}/export")
+  end
 end

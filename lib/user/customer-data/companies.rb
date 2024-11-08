@@ -12,7 +12,7 @@ module Companies
   # ==== Example
   #     @data = @cxf_user.get_companies_support_data
   def get_companies_support_data
-    @client.raw('get', '/crm/companies/support-data')
+    @client.raw('get', '/customer-data/companies/support-data')
   end
 
   # === Get companies.
@@ -33,7 +33,7 @@ module Companies
   #     options = { fields: 'id, title', sort: '-id' }
   #     @data = @cxf_user.get_companies(options, false)
   def get_companies(options = nil, use_post = true)
-    get_query_results('/crm/companies', options, use_post)
+    get_query_results('/customer-data/companies', options, use_post)
   end
 
   # === Get company.
@@ -50,7 +50,7 @@ module Companies
   #     options = { fields: 'id, title' }
   #     @data = @cxf_user.get_company(21, options)
   def get_company(id, options = nil)
-    @client.raw('get', "/crm/companies/#{id}", options)
+    @client.raw('get', "/customer-data/companies/#{id}", options)
   end
 
   # === Create company.
@@ -73,7 +73,7 @@ module Companies
   #     }
   #     @data = @cxf_user.create_company(data)
   def create_company(data, options = nil)
-    @client.raw('post', '/crm/companies/', options, data_transform(data))
+    @client.raw('post', '/customer-data/companies/', options, data_transform(data))
   end
 
   # === Update company.
@@ -89,7 +89,7 @@ module Companies
   #     }
   #     @data = @cxf_user.update_company(23, data)
   def update_company(id, data, options = nil)
-    @client.raw('put', "/crm/companies/#{id}", options, data_transform(data))
+    @client.raw('put', "/customer-data/companies/#{id}", options, data_transform(data))
   end
 
   ##
@@ -106,6 +106,6 @@ module Companies
   #     data = { ids: %w[21 22] }
   #     @data = @cxf_user.delete_companies(data)
   def delete_companies(data)
-    @client.raw('delete', '/crm/companies/delete', nil, data_transform(data))
+    @client.raw('delete', '/customer-data/companies/delete', nil, data_transform(data))
   end
 end

@@ -9,6 +9,11 @@ require_relative './system_settings'
 require_relative './tags'
 require_relative './taxonomies'
 require_relative './users'
+require_relative './docs'
+require_relative './exports'
+require_relative './logs'
+require_relative './password'
+require_relative './calendars'
 
 module Config
   include AttributeGroups
@@ -20,4 +25,9 @@ module Config
   include Tags
   include Taxonomies
   include Users
+  include Docs
+  include Exports
+  include Logs
+  include Password
+  include Calendars
 end

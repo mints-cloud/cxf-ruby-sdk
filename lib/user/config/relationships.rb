@@ -1,24 +1,6 @@
 # frozen_string_literal: true
 
 module Relationships
-  ##
-  # == Relationships
-  #
-  # === Get relationships available for.
-  # Get relationships available.
-  #
-  # ==== Parameters
-  # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
-  #
-  # ==== Example
-  #     options = {
-  #       objectType: 'contacts'
-  #     }
-  #     @data = @cxf_user.get_relationships_available_for(options)
-  def get_relationships_available_for(options)
-    @client.raw('get', '/config/relationships/available-for', options)
-  end
-
   # === Attach relationship.
   # Attach a relationship.
   #
@@ -28,7 +10,6 @@ module Relationships
   # ==== Example
   #
   def attach_relationship(data)
-    # FIXME: Method doesn't work, RelationshipManager cannot access to id attribute.
     @client.raw('post', '/config/relationships/attach', nil, data_transform(data))
   end
 
@@ -41,21 +22,9 @@ module Relationships
   # ==== Example
   #
   def detach_relationship(data)
-    # FIXME: Method doesn't work, RelationshipManager cannot access to id attribute.
     @client.raw('post', '/config/relationships/detach', nil, data_transform(data))
   end
 
-  # === Relationship has objects.
-  # Get relationships that has objects.
-  #
-  # ==== Parameters
-  # id:: (Integer) -- Relationship id.
-  #
-  # ==== Example
-  #     @data = @cxf_user.relationship_has_objects(1)
-  def relationship_has_objects(id)
-    @client.raw('get', "/config/relationships/#{id}/hasObjects")
-  end
 
   # === Get relationships.
   # Get a collection of relationships.
@@ -137,5 +106,22 @@ module Relationships
   #     @data = @cxf_user.delete_relationship(5)
   def delete_relationship(id)
     @client.raw('delete', "/config/relationships/#{id}")
+  end
+
+  ##
+  # === Update relationship pivot fields.
+  # Update pivot fields for relationships.
+  #
+  # ==== Parameters
+  # data:: (Hash) -- Data to be submitted.
+  #
+  # ==== Example
+  #     data = {
+  #       field_name_1: 'value_1',
+  #       field_name_2: 'value_2'
+  #     }
+  #     @data = @cxf_user.update_relationship_pivot_fields(data)
+  def update_relationship_pivot_fields(data)
+    @client.raw('put', '/config/relationships/pivot-fields', nil, data_transform(data))
   end
 end

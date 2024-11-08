@@ -62,6 +62,24 @@ module PrintVersions
     @client.raw('post', '/content/print-versions', options, data_transform(data))
   end
 
+  # === Create print version from existing print version.
+  # Create a new print version using data from an existing print version.
+  #
+  # ==== Parameters
+  # id:: (Integer) -- print version id.
+  # data:: (Hash) -- Data to be submitted.
+  # options:: (Hash) -- Optional parameters for the request.
+  #
+  # ==== Example
+  #     data = {
+  #       title: 'Copied print',
+  #       slug: 'copied-print'
+  #     }
+  #     @data = @cxf_user.create_print_version_from_print_version(1, data)
+  def create_print_version_from_print_version(id, data, options = nil)
+    @client.raw('post', "/content/print-versions/#{id}/print-version", options, data_transform(data))
+  end
+
   # === CHECK THIS ===
   # def create_print_version_from_instance(id, data, options = nil)
   #   @client.raw('post', "/content/print-versions/#{id}/print-version", options, data_transform(data))
