@@ -29,8 +29,8 @@ module ProxyControllersMethods
     }
 
     if %w[contact user].include? controller_type
-      session_token = cookies["cxf_#{controller_type}_session_token".to_sym]
-      refresh_token = cookies["cxf_#{controller_type}_refresh_token".to_sym]
+      session_token = cookies["Access-Token"]
+      refresh_token = cookies["Refresh-Token"]
       headers['Access-Token'] = session_token
       headers['Refresh-Token'] = refresh_token
     end
@@ -128,8 +128,8 @@ module ProxyControllersMethods
           refresh_token_expires_at = Time.parse(response.header['Refresh-Token-Expires-At']) if response.header['Refresh-Token-Expires-At']
 
           # add expires to cookies
-          cookies["cxf_#{controller_type}_session_token".to_sym] = { value: response.header['Access-Token'], secure: true, httponly: true, expires: Time.at(session_token_expires_at) } if response.header['Access-Token']
-          cookies["cxf_#{controller_type}_refresh_token".to_sym] = { value: response.header['Refresh-Token'], secure: true, httponly: true, expires: Time.at(refresh_token_expires_at) } if response.header['Refresh-Token']
+          cookies["Access-Token"] = { value: response.header['Access-Token'], secure: true, httponly: true, expires: Time.at(session_token_expires_at) } if response.header['Access-Token']
+          cookies["Refresh-Token"] = { value: response.header['Refresh-Token'], secure: true, httponly: true, expires: Time.at(refresh_token_expires_at) } if response.header['Refresh-Token']
         end
       end
 

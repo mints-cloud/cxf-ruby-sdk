@@ -7,15 +7,17 @@ module ContactAuthHelper
   def cxf_contact_login(email, password)
     # Login in cxf
     response = @cxf_contact.login(email, password)
+
     # Get session token from response
+    return response unless response.is_a? Hash
     if response.key? 'data'
       session_token = response['data']['session_token']
       refresh_token = response['data']['refresh_token']
       id_token = response['data']['contact_token'] || response['data']['id_token'] || nil
     end
     # Set a permanent cookie with the session token
-    cookies.permanent[:cxf_contact_session_token] = { value: session_token, secure: true, httponly: true }
-    cookies.permanent[:cxf_contact_refresh_token] = { value: refresh_token, secure: true, httponly: true }
+    cookies.permanent["Access-Token"] = { value: session_token, secure: true, httponly: true }
+    cookies.permanent["Refresh-Token"] = { value: refresh_token, secure: true, httponly: true }
     # cookies.permanent[:cxf_contact_id] = { value: id_token, secure: true, httponly: true }
     @contact_token = id_token
   end
@@ -33,8 +35,8 @@ module ContactAuthHelper
       refresh_token = response['data']['refresh_token']
       # id_token = response['data']['contact']['contact_token'] ? response['data']['contact']['contact_token'] : response['data']['contact']['id_token']
       # Set a permanent cookie with the session token
-      cookies.permanent[:cxf_contact_session_token] = { value: session_token, secure: true, httponly: true }
-      cookies.permanent[:cxf_contact_refresh_token] = { value: refresh_token, secure: true, httponly: true }
+      cookies.permanent["Access-Token"] = { value: session_token, secure: true, httponly: true }
+      cookies.permanent["Refresh-Token"] = { value: refresh_token, secure: true, httponly: true }
       # cookies.permanent[:cxf_contact_id] = { value: id_token, secure: true, httponly: true }
       # @contact_token = id_token
       redirect_to response['data']['redirect_url'] || '/' if redirect_in_error
@@ -51,8 +53,8 @@ module ContactAuthHelper
     @cxf_contact.logout
     # Delete session token and keep the contact token id
     # Never delete the cxf_contact_id cookie to avoid the creation of ghosts
-    cookies.delete(:cxf_contact_session_token)
-    cookies.delete(:cxf_contact_refresh_token)
+    cookies.delete("Access-Token")
+    cookies.delete("Refresh-Token")
     @contact_token = nil
   end
 
@@ -66,8 +68,8 @@ module ContactAuthHelper
     rescue => e
       # Handle the client Unauthorized error
       # if cxf response is negative delete the session cookie
-      cookies.delete(:cxf_contact_session_token)
-      cookies.delete(:cxf_contact_refresh_token)
+      cookies.delete("Access-Token")
+      cookies.delete("Refresh-Token")
       status = false
     end
 
@@ -77,10 +79,10 @@ module ContactAuthHelper
   def update_contact_tokens
     access_token = @cxf_user.get_client.session_token
     refresh_token = @cxf_user.get_client.refresh_token
-    access_token_expires_at = @cxf_user.get_client.session_token_expires_at
-    refresh_token_expires_at = @cxf_user.get_client.refresh_token_expires_at
+    # access_token_expires_at = @cxf_user.get_client.session_token_expires_at
+    # refresh_token_expires_at = @cxf_user.get_client.refresh_token_expires_at
 
-    cookies[:cxf_contact_session_token] = { value: access_token, secure: true, httponly: true, expires: Time.at(access_token_expires_at) } if access_token && access_token_expires_at
-    cookies[:cxf_contact_refresh_token] = { value: refresh_token, secure: true, httponly: true, expires: Time.at(refresh_token_expires_at) } if refresh_token && refresh_token_expires_at
+    cookies["Access-Token"] = { value: access_token, secure: true, httponly: true} if access_token
+    cookies["Refresh-Token"] = { value: refresh_token, secure: true, httponly: true } if refresh_token
   end
 end

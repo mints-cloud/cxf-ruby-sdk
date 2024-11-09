@@ -93,6 +93,8 @@ module Cxf
         password: password
       }
       response = @client.raw('post', '/contacts/login', nil, data_transform(data))
+
+      return response unless response.is_a? Hash
       if response.key? 'data' and response['data'].key? 'access_token'
         @client.session_token = response['data']['access_token']
         @client.refresh_token = response['data']['refresh_token']
