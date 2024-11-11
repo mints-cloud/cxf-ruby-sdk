@@ -13,7 +13,7 @@ module Cxf
     include CxfHelper
 
     attr_reader :host, :mode, :api_key, :scope, :base_url
-    attr_accessor :session_token, :refresh_token, :contact_token_id, :session_token_expires_at, :refresh_token_expires_at, :user_agent
+    attr_accessor :session_token, :refresh_token, :contact_token_id, :user_agent
 
     def initialize(
       host,
@@ -30,9 +30,7 @@ module Cxf
       @host = host
       @api_key = api_key
       @session_token = session_token
-      @session_token_expires_at = nil
       @refresh_token = refresh_token
-      @refresh_token_expires_at = nil
       @contact_token_id = contact_token_id
       @visit_id = visit_id
       @debug = debug
@@ -380,7 +378,7 @@ module Cxf
 
         if !is_success and !ignore_http_errors
           title = "Request failed with status #{http_status}"
-          detail = response&.parsed_response["message"] ||response&.response&.message || 'Unknown error'
+          detail = response&.parsed_response["message"] || response&.response&.message || 'Unknown error'
 
           if @debug
             puts "Error detected: #{http_status}"
@@ -447,12 +445,25 @@ module Cxf
       return unless response&.headers
 
       # Return if the response does not have headers Access-Token and Refresh-Token
-      return unless response.headers.key?('Access-Token') && response.headers.key?('Refresh-Token')
+      return unless response.headers.key?('Set-Cookie')
+      parsed_cookie = parse_set_cookie(response.headers['Set-Cookie'])
+      return unless parsed_cookie['Access-Token'] || parsed_cookie['Refresh-Token']
 
-      @session_token = response.headers['Access-Token']
-      @refresh_token = response.headers['Refresh-Token']
-      @session_token_expires_at = Time.parse(response.headers['Access-Token-Expires-At'])
-      @refresh_token_expires_at = Time.parse(response.headers['Refresh-Token-Expires-At'])
+      @session_token = parsed_cookie['Access-Token'] if parsed_cookie['Access-Token']
+      @refresh_token = parsed_cookie['Refresh-Token'] if parsed_cookie['Refresh-Token']
+    end
+
+    def parse_set_cookie(set_cookie)
+      set_cookie = set_cookie.split(', ')
+      cookies_hash = {}
+
+      set_cookie.each do |cookie|
+        key, value = cookie.split('=')
+        value = value.split(';')[0]
+        cookies_hash[key] = value
+      end
+
+      cookies_hash
     end
   end
 end

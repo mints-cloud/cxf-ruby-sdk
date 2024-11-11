@@ -69,7 +69,8 @@ module Cxf
     def login(email, password)
       data = { email: email, password: password }
       response = @client.raw('post', '/users/login', nil, data.to_json, '/api/v1', { no_content_type: true })
-      # @client.session_token = response['api_token'] if response.key? 'api_token'
+
+      return response unless response.is_a? Hash
       if response.key? 'data' and response['data'].key? 'access_token'
         @client.session_token = response['data']['access_token']
         @client.refresh_token = response['data']['refresh_token']

@@ -29,8 +29,8 @@ module ProxyControllersMethods
     }
 
     if %w[contact user].include? controller_type
-      session_token = cookies["cxf_#{controller_type}_session_token".to_sym]
-      refresh_token = cookies["cxf_#{controller_type}_refresh_token".to_sym]
+      session_token = cookies["cxf_#{controller_type}_session_token"]
+      refresh_token = cookies["cxf_#{controller_type}_refresh_token"]
       headers['Access-Token'] = session_token
       headers['Refresh-Token'] = refresh_token
     end
@@ -124,12 +124,9 @@ module ProxyControllersMethods
       # set Cookies from response headers
       if %w[contact user].include? controller_type
         config.on_response do |_status_code, response|
-          session_token_expires_at = Time.parse(response.header['Access-Token-Expires-At']) if response.header['Access-Token-Expires-At']
-          refresh_token_expires_at = Time.parse(response.header['Refresh-Token-Expires-At']) if response.header['Refresh-Token-Expires-At']
-
-          # add expires to cookies
-          cookies["cxf_#{controller_type}_session_token".to_sym] = { value: response.header['Access-Token'], secure: true, httponly: true, expires: Time.at(session_token_expires_at) } if response.header['Access-Token']
-          cookies["cxf_#{controller_type}_refresh_token".to_sym] = { value: response.header['Refresh-Token'], secure: true, httponly: true, expires: Time.at(refresh_token_expires_at) } if response.header['Refresh-Token']
+          parsed_cookie = parse_set_cookie(response.header['Set-Cookie'])
+          cookies["cxf_#{controller_type}_session_token"] = { value: parsed_cookie['Access-Token'], secure: true, httponly: true } if parsed_cookie['Access-Token']
+          cookies["cxf_#{controller_type}_refresh_token"] = { value: parsed_cookie['Refresh-Token'], secure: true, httponly: true } if parsed_cookie['Refresh-Token']
         end
       end
 
@@ -139,5 +136,20 @@ module ProxyControllersMethods
         raise ActionController::RoutingError.new('Not Found') if status_code == 404
       end
     end
+  end
+
+  private
+
+  def parse_set_cookie(set_cookie)
+    set_cookie = set_cookie.split(', ')
+    cookies_hash = {}
+
+    set_cookie.each do |cookie|
+      key, value = cookie.split('=')
+      value = value.split(';')[0]
+      cookies_hash[key] = value
+    end
+
+    cookies_hash
   end
 end
