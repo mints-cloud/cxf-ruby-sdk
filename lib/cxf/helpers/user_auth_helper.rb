@@ -8,8 +8,8 @@ module UserAuthHelper
     rescue => e
       # Handle the client Unauthorized error
       # if cxf response is negative delete the session cookie
-      cookies.delete("Access-Token")
-      cookies.delete("Refresh-Token")
+      cookies.delete("cxf_user_session_token")
+      cookies.delete("cxf_user_refresh_token")
       response = nil
     end
 
@@ -32,8 +32,8 @@ module UserAuthHelper
     end
 
     # Set a permanent cookie with the session token
-    cookies["Access-Token"] = { value: session_token, secure: true, httponly: true }
-    cookies["Refresh-Token"] = { value: refresh_token, secure: true, httponly: true}
+    cookies["cxf_user_session_token"] = { value: session_token, secure: true, httponly: true }
+    cookies["cxf_user_refresh_token"] = { value: refresh_token, secure: true, httponly: true}
   end
 
   ##
@@ -44,8 +44,8 @@ module UserAuthHelper
     response = @cxf_user.magic_link_login(hash)
     if response['data']
       # Set a cookie with the session token
-      cookies["Access-Token"] = { value: response['data']['access_token'], secure: true, httponly: true }
-      cookies["Refresh-Token"] = { value: response['data']['refresh_token'], secure: true, httponly: true }
+      cookies["cxf_user_session_token"] = { value: response['data']['access_token'], secure: true, httponly: true }
+      cookies["cxf_user_refresh_token"] = { value: response['data']['refresh_token'], secure: true, httponly: true }
       redirect_to response['data']['redirect_url'] || '/'
     else
       redirect_to '/'
@@ -59,15 +59,15 @@ module UserAuthHelper
     # Logout from cxf
     # @cxf_user.logout
     # Delete local cookie
-    cookies.delete("Access-Token")
-    cookies.delete("Refresh-Token")
+    cookies.delete("cxf_user_session_token")
+    cookies.delete("cxf_user_refresh_token")
   end
 
   def update_user_tokens
     access_token = @cxf_user.get_client.session_token
     refresh_token = @cxf_user.get_client.refresh_token
 
-    cookies["Access-Token"] = { value: access_token, secure: true, httponly: true} if access_token
-    cookies["Refresh-Token"] = { value: refresh_token, secure: true, httponly: true} if refresh_token
+    cookies["cxf_user_session_token"] = { value: access_token, secure: true, httponly: true} if access_token
+    cookies["cxf_user_refresh_token"] = { value: refresh_token, secure: true, httponly: true} if refresh_token
   end
 end

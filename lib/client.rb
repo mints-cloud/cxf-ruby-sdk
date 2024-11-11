@@ -13,7 +13,7 @@ module Cxf
     include CxfHelper
 
     attr_reader :host, :mode, :api_key, :scope, :base_url
-    attr_accessor :session_token, :refresh_token, :contact_token_id, :session_token_expires_at, :refresh_token_expires_at, :user_agent
+    attr_accessor :session_token, :refresh_token, :contact_token_id, :user_agent
 
     def initialize(
       host,
@@ -30,9 +30,7 @@ module Cxf
       @host = host
       @api_key = api_key
       @session_token = session_token
-      @session_token_expires_at = nil
       @refresh_token = refresh_token
-      @refresh_token_expires_at = nil
       @contact_token_id = contact_token_id
       @visit_id = visit_id
       @debug = debug
@@ -448,11 +446,11 @@ module Cxf
 
       # Return if the response does not have headers Access-Token and Refresh-Token
       return unless response.headers.key?('Set-Cookie')
-
       parsed_cookie = parse_set_cookie(response.headers['Set-Cookie'])
+      return unless parsed_cookie['Access-Token'] || parsed_cookie['Refresh-Token']
 
-      @session_token = parsed_cookie['Access-Token']
-      @refresh_token = parsed_cookie['Refresh-Token']
+      @session_token = parsed_cookie['Access-Token'] if parsed_cookie['Access-Token']
+      @refresh_token = parsed_cookie['Refresh-Token'] if parsed_cookie['Refresh-Token']
     end
 
     def parse_set_cookie(set_cookie)
