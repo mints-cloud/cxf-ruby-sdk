@@ -459,6 +459,8 @@ module Cxf
 
       set_cookie.each do |cookie|
         key, value = cookie.split('=')
+        next if value.nil? # skip if value is nil
+
         value = value.split(';')[0]
         cookies_hash[key] = value
       end
