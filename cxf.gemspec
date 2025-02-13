@@ -2,10 +2,10 @@
 
 Gem::Specification.new do |s|
   s.name = 'cxf'
-  s.version = '0.0.6'
-  s.date = '2024-09-11'
+  s.version = '0.0.7'
+  s.date = '2025-02-13'
   s.summary = 'CXF gem allows to connect your Rails App to the Customer Experience Framework.'
-  s.authors = 'Ruben Gomez Garcia, Omar Mora, Luis Payan, Oscar Castillo, Fabian Garcia, Luis Hesiquio'
+  s.authors = 'Ruben Gomez Garcia, Omar Mora, Luis Hesiquio'
   s.homepage = 'https://github.com/rubengomez/cxf-ruby-sdk'
   s.required_ruby_version = '>= 2.6.0'
   s.files = %w[
