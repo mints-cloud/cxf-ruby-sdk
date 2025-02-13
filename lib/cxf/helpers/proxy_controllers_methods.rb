@@ -124,9 +124,8 @@ module ProxyControllersMethods
       # set Cookies from response headers
       if %w[contact user].include? controller_type
         config.on_response do |_status_code, response|
-          parsed_cookie = parse_set_cookie(response.header['Set-Cookie'])
-          cookies["cxf_#{controller_type}_session_token"] = { value: parsed_cookie['Access-Token'], secure: true, httponly: true } if parsed_cookie['Access-Token']
-          cookies["cxf_#{controller_type}_refresh_token"] = { value: parsed_cookie['Refresh-Token'], secure: true, httponly: true } if parsed_cookie['Refresh-Token']
+          cookies["cxf_#{controller_type}_session_token"] = { value: response.header['Access-Token'], secure: true, httponly: true } if response.header['Access-Token']
+          cookies["cxf_#{controller_type}_refresh_token"] = { value: response.header['Refresh-Token'], secure: true, httponly: true } if response.header['Refresh-Token']
         end
       end
 

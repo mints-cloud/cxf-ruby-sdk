@@ -444,26 +444,8 @@ module Cxf
     def replace_tokens(response)
       return unless response&.headers
 
-      # Return if the response does not have headers Access-Token and Refresh-Token
-      return unless response.headers.key?('Set-Cookie')
-      parsed_cookie = parse_set_cookie(response.headers['Set-Cookie'])
-      return unless parsed_cookie['Access-Token'] || parsed_cookie['Refresh-Token']
-
-      @session_token = parsed_cookie['Access-Token'] if parsed_cookie['Access-Token']
-      @refresh_token = parsed_cookie['Refresh-Token'] if parsed_cookie['Refresh-Token']
-    end
-
-    def parse_set_cookie(set_cookie)
-      set_cookie = set_cookie.split(', ')
-      cookies_hash = {}
-
-      set_cookie.each do |cookie|
-        key, value = cookie.split('=')
-        value = value.split(';')[0]
-        cookies_hash[key] = value
-      end
-
-      cookies_hash
+      @session_token = response.headers['Access-Token'] if response.headers.key?('Access-Token')
+      @refresh_token = response.headers['Refresh-Token'] if response.headers.key?('Refresh-Token')
     end
   end
 end
