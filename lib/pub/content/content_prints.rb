@@ -22,7 +22,7 @@ module ContentPrints
   #     }
   #     @data = @cxf_user.get_content_prints(options, true)
   def get_content_prints(options = nil, use_post = true)
-    get_query_results('/content/content-prints', options, use_post)
+    get_query_results('/content/prints', options, use_post)
   end
 
   # === Get content print.
@@ -41,7 +41,7 @@ module ContentPrints
   #     }
   #     @data = @cxf_user.get_content_print(1, options)
   def get_content_print(id, options = nil)
-    @client.raw('get', "/content/content-prints/#{id}", options, nil)
+    @client.raw('get', "/content/prints/#{id}", options, nil)
   end
 
   # === Create content print.
@@ -61,7 +61,7 @@ module ContentPrints
   #
   #     @data = @cxf_user.create_content_print(data, options)
   def create_content_print(data, options = nil)
-    @client.raw('post', '/content/content-prints', options, data_transform(data))
+    @client.raw('post', '/content/prints', options, data_transform(data))
   end
 
   # === Update content print.
@@ -78,7 +78,7 @@ module ContentPrints
   #     }
   #     @data = @cxf_user.update_content_print(5, data)
   def update_content_print(id, data, options = nil)
-    @client.raw('put', "/content/content-prints/#{id}", options, data_transform(data))
+    @client.raw('put', "/content/prints/#{id}", options, data_transform(data))
   end
 
   # === Delete content print.
@@ -90,6 +90,6 @@ module ContentPrints
   # ==== Example
   #     @data = @cxf_user.delete_content_print(6)
   def delete_content_print(id)
-    @client.raw('delete', "/content/content-prints/#{id}", nil, nil)
+    @client.raw('delete', "/content/prints/#{id}", nil, nil)
   end
 end
