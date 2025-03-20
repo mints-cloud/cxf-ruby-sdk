@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module PrintVersions
+module PublicPrintVersions
   # === Get print versions.
   # Get a collection of print versions.
   #

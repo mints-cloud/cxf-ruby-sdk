@@ -1,30 +1,5 @@
 # frozen_string_literal: true
-module ContentPrints
-  # === Get content print.
-  # Get a collection of content print.
-  #
-  # ==== Parameters
-  # options:: (Hash) -- List of Resource Collection Options shown above can be used as parameter.
-  # use_post:: (Boolean) -- Variable to determine if the request is by 'post' or 'get' functions.
-  #
-  # ==== First Example
-  #     @data = @cxf_user.get_content_prints
-  #
-  # ==== Second Example
-  #     options = {
-  #       fields: 'id, slug'
-  #     }
-  #     @data = @cxf_user.get_content_prints(options)
-  #
-  # ==== Third Example
-  #     options = {
-  #       fields: 'id, slug'
-  #     }
-  #     @data = @cxf_user.get_content_prints(options, true)
-  def get_content_prints(options = nil, use_post = true)
-    get_query_results('/content/prints', options, use_post)
-  end
-
+module PublicContentPrints
   # === Get content print.
   # Get a content print info.
   #
