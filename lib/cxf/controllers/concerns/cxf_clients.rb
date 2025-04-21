@@ -49,7 +49,7 @@ module CxfClients
 
     @cxf_pub = Cxf::Pub.new(
       @host,
-      @api_key,
+      @public_api_key,
       contact_token_id,
       visit_id,
       @debug,
@@ -68,7 +68,7 @@ module CxfClients
     user_agent = request.user_agent
     @cxf_contact = Cxf::Contact.new(
       @host,
-      @api_key,
+      @user_api_key,
       contact_session_token,
       contact_refresh_token,
       contact_token_id,
@@ -87,7 +87,7 @@ module CxfClients
     user_agent = request.user_agent
     @cxf_user = Cxf::User.new(
       @host,
-      @api_key,
+      @user_api_key,
       user_session_token,
       user_refresh_token,
       @debug,
@@ -103,9 +103,9 @@ module CxfClients
     user_agent = request.user_agent
     @cxf_service_account = Cxf::User.new(
       @host,
-      @api_key,   # api token
-      @api_key,   # session token
-      @api_key,   # refresh token
+      @user_api_key,   # api token
+      @user_api_key,   # session token
+      @user_api_key,   # refresh token
       @debug,
       user_agent
     )

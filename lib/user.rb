@@ -79,7 +79,7 @@ module Cxf
     end
 
     def magic_link_login(token)
-      @client.raw('get', "/users/magic-link-login/#{token}", nil, nil, '/api/v1')
+      @client.raw('get', "/user/login/#{token}", nil, nil, '/api/v1/magic-link')
     end
 
     ##
@@ -90,7 +90,7 @@ module Cxf
         redirectUrl: redirect_url,
         lifeTime: life_time
       }
-      @client.raw('post', '/users/magic-link', nil, { data: data }, '/api/v1')
+      @client.raw('post', '/user/request', nil, { data: data }, '/api/v1/magic-link')
     end
 
     def get_client
