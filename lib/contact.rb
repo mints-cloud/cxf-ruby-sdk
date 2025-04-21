@@ -154,7 +154,7 @@ module Cxf
     #       'd8618c6d-a165-41cb-b3ec-d053cbf30059:zm54HtRdfHED8dpILZpjyqjPIceiaXNLfOklqM92fveBS0nDtyPYBlI4CPlPe3zq'
     #     )
     def magic_link_login(token)
-      response = @client.raw('get', "/contacts/magic-link-login/#{token}", nil, '/api/v1')
+      response = @client.raw('get', "/contact/login/#{token}", nil, '/api/v1/magic-link')
       @client.session_token = response['session_token'] if response.key? 'session_token'
 
       response
@@ -189,7 +189,7 @@ module Cxf
       else
         data['email'] = email_or_phone
       end
-      @client.raw('post', '/contacts/magic-link', nil, data_transform(data), '/api/v1')
+      @client.raw('post', '/contact/request', nil, data_transform(data), '/api/v1/magic-link')
     end
 
     ### CONTACT/V1 ###

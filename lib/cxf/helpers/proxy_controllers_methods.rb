@@ -23,7 +23,7 @@ module ProxyControllersMethods
 
     headers = {
       'host' => host,
-      'ApiKey' => @api_key.to_s,
+      'ApiKey' => @user_api_key.to_s,
       'Content-Type' => 'application/json',
       'Accept' => 'application/json'
     }
