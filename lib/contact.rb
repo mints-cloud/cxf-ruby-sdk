@@ -33,8 +33,6 @@ module Cxf
     def initialize(
       host,
       api_key,
-      session_token = nil,
-      refresh_token = nil,
       contact_token_id = nil,
       debug = false,
       user_agent = nil,
@@ -45,8 +43,6 @@ module Cxf
         host,
         api_key,
         'contact',
-        session_token,
-        refresh_token,
         contact_token_id,
         nil,
         debug,
@@ -74,7 +70,7 @@ module Cxf
     #     }
     #     @cxf_contact.register(data);
     def register(data)
-      @client.raw('post', '/contacts/register', nil, data_transform(data))
+      @client.raw('post', '/register', nil, data_transform(data))
     end
 
     ##
@@ -92,14 +88,7 @@ module Cxf
         email: email,
         password: password
       }
-      response = @client.raw('post', '/contacts/login', nil, data_transform(data))
-
-      return response unless response.is_a? Hash
-      if response.key? 'data' and response['data'].key? 'access_token'
-        @client.session_token = response['data']['access_token']
-        @client.refresh_token = response['data']['refresh_token']
-      end
-      response
+      @client.raw('post', '/login', nil, data_transform(data))
     end
 
     ##
@@ -113,7 +102,7 @@ module Cxf
     #     data = { email: 'email@example.com' }
     #     @cxf_contact.recover_password(data)
     def recover_password(data)
-      @client.raw('post', '/contacts/recover-password', nil, data_transform(data))
+      @client.raw('post', '/recover-password', nil, data_transform(data))
     end
 
     ##
@@ -132,14 +121,14 @@ module Cxf
     #     }
     #     @cxf_contact.reset_password(data)
     def reset_password(data)
-      @client.raw('post', '/contacts/reset-password', nil, data_transform(data))
+      @client.raw('post', '/reset-password', nil, data_transform(data))
     end
 
     ##
     # === OAuth Login.
     # Login a contact using oauth.
     def oauth_login(data)
-      @client.raw('post', '/contacts/oauth-login', nil, data)
+      @client.raw('post', '/oauth-login', nil, data)
     end
 
     ##
@@ -154,7 +143,7 @@ module Cxf
     #       'd8618c6d-a165-41cb-b3ec-d053cbf30059:zm54HtRdfHED8dpILZpjyqjPIceiaXNLfOklqM92fveBS0nDtyPYBlI4CPlPe3zq'
     #     )
     def magic_link_login(token)
-      response = @client.raw('get', "/contacts/magic-link-login/#{token}", nil, '/api/v1')
+      response = @client.raw('get', "/magic-link-login/#{token}", nil, '/api/v1')
       @client.session_token = response['session_token'] if response.key? 'session_token'
 
       response
@@ -189,7 +178,7 @@ module Cxf
       else
         data['email'] = email_or_phone
       end
-      @client.raw('post', '/contacts/magic-link', nil, data_transform(data), '/api/v1')
+      @client.raw('post', '/magic-link', nil, data_transform(data), '/api/v1')
     end
 
     ### CONTACT/V1 ###
@@ -211,7 +200,7 @@ module Cxf
     #     }
     #     @data = @cxf_contact.me(options)
     def me(options = nil)
-      @client.raw('get', '/contacts/me', options, nil)
+      @client.raw('get', '/me', options, nil)
     end
 
     ##

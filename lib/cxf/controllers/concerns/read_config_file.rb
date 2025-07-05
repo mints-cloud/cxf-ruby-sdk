@@ -13,7 +13,8 @@ module ReadConfigFile
       config = YAML.safe_load template.result(binding)
 
       @host = config.dig('cxf', 'host')
-      @api_key = config.dig('cxf', 'api_key')
+      @user_api_key = config.dig('cxf', 'user_api_key')
+      @contact_api_key = config.dig('cxf', 'contact_api_key')
       @debug = !!config.dig('cxf', 'debug')
       @redis_config = config.dig('cxf', 'redis_cache')
       @use_cache = config.dig('cxf', 'redis_cache', 'use_cache')

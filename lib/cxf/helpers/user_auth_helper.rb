@@ -23,17 +23,17 @@ module UserAuthHelper
     # Login in cxf
     response = @cxf_user.login(email, password)
     # Get session token from response
-    return response unless response.is_a? Hash
-    if response.key? 'data'
-      session_token = response['data']['access_token']
-      refresh_token = response['data']['refresh_token']
-      # session_token_expires_at = Time.parse(response['data']['access_token_expires_at'])
-      # refresh_token_expires_at = Time.parse(response['data']['refresh_token_expires_at'])
-    end
+    return response # unless response.is_a? Hash
+    # if response.key? 'data'
+    # session_token = response['data']['access_token']
+    # refresh_token = response['data']['refresh_token']
+    # session_token_expires_at = Time.parse(response['data']['access_token_expires_at'])
+    # refresh_token_expires_at = Time.parse(response['data']['refresh_token_expires_at'])
+    # end
 
     # Set a permanent cookie with the session token
-    cookies["cxf_user_session_token"] = { value: session_token, secure: true, httponly: true }
-    cookies["cxf_user_refresh_token"] = { value: refresh_token, secure: true, httponly: true}
+    # cookies["cxf_user_session_token"] = { value: session_token, secure: true, httponly: true }
+    # cookies["cxf_user_refresh_token"] = { value: refresh_token, secure: true, httponly: true}
   end
 
   ##
@@ -63,11 +63,18 @@ module UserAuthHelper
     cookies.delete("cxf_user_refresh_token")
   end
 
-  def update_user_tokens
-    access_token = @cxf_user.get_client.session_token
-    refresh_token = @cxf_user.get_client.refresh_token
+  def sync_user_cookies
+    response_cookies = @cxf_user.get_client.response_cookies
 
-    cookies["cxf_user_session_token"] = { value: access_token, secure: true, httponly: true} if access_token
-    cookies["cxf_user_refresh_token"] = { value: refresh_token, secure: true, httponly: true} if refresh_token
+    response_cookies.each do |key, cookie|
+      cookies[cookie['name']] = {
+        value: cookie['value'],
+        expires: cookie['expires'] ? Time.parse(cookie['expires']) : nil,
+        path: cookie['path'] || '/',
+        secure: cookie['secure'] || false,
+        httponly: cookie['httponly'] || false,
+        same_site: (cookie['samesite'] || 'Lax').downcase.to_sym
+      }
+    end
   end
 end

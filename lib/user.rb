@@ -50,13 +50,11 @@ module Cxf
 
     attr_reader :client
 
-    def initialize(host, api_key, session_token = nil, refresh_token = nil, debug = false, user_agent = nil, timeouts = {})
+    def initialize(host, api_key, debug = false, user_agent = nil, timeouts = {})
       @client = Cxf::Client.new(
         host,
         api_key,
         'user',
-        session_token,
-        refresh_token,
         nil,
         nil,
         debug,
@@ -69,12 +67,6 @@ module Cxf
     def login(email, password)
       data = { email: email, password: password }
       response = @client.raw('post', '/users/login', nil, data.to_json, '/api/v1', { no_content_type: true })
-
-      return response unless response.is_a? Hash
-      if response.key? 'data' and response['data'].key? 'access_token'
-        @client.session_token = response['data']['access_token']
-        @client.refresh_token = response['data']['refresh_token']
-      end
       response
     end
 
