@@ -49,7 +49,7 @@ module CxfClients
 
     @cxf_pub = Cxf::Pub.new(
       @host,
-      @api_key,
+      @contact_api_key,
       contact_token_id,
       visit_id,
       @debug,
@@ -62,37 +62,30 @@ module CxfClients
   # Initialize the contact client and set the contact token
   def set_cxf_contact_client
     # Initialize cxf contact client
-    contact_session_token = cookies["cxf_contact_session_token"]
-    contact_refresh_token = cookies["cxf_contact_refresh_token"]
     contact_token_id = cookies[:cxf_contact_id] || nil
     user_agent = request.user_agent
     @cxf_contact = Cxf::Contact.new(
       @host,
-      @api_key,
-      contact_session_token,
-      contact_refresh_token,
+      @contact_api_key,
       contact_token_id,
       @debug,
       user_agent
     )
+    @cxf_contact.get_client.response_cookies = cookies
   end
 
   ##
   # === Set Cxf user client.
   # Initialize the user client
   def set_cxf_user_client
-    # Initialize cxf user client
-    user_session_token = cookies["cxf_user_session_token"]
-    user_refresh_token = cookies["cxf_user_refresh_token"]
     user_agent = request.user_agent
     @cxf_user = Cxf::User.new(
       @host,
-      @api_key,
-      user_session_token,
-      user_refresh_token,
+      @user_api_key,
       @debug,
       user_agent
     )
+    @cxf_user.get_client.response_cookies = cookies
   end
 
   ##
@@ -103,9 +96,7 @@ module CxfClients
     user_agent = request.user_agent
     @cxf_service_account = Cxf::User.new(
       @host,
-      @api_key,   # api token
-      @api_key,   # session token
-      @api_key,   # refresh token
+      @user_api_key,   # api token
       @debug,
       user_agent
     )

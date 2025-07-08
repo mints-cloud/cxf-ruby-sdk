@@ -25,8 +25,8 @@ class ApplicationController < ActionController::Base
   include UserAuthHelper # if you log in with a user
   include ContactAuthHelper # if you log in with a contact
 
-  after_action :update_user_tokens # if you haven't run the generator yet and you log in with a user
-  after_action :update_contact_tokens # if you haven't run the generator yet and you log in with a contact
+  after_action :sync_user_cookies # if you haven't run the generator yet and you log in with a user
+  after_action :sync_contact_cookies # if you haven't run the generator yet and you log in with a contact
 end
 ```
 
@@ -142,7 +142,8 @@ it to the groups array and set the cache time.
   # Cxf connection configuration
   cxf:
     host: http://your_host_goes_here.com
-    api_key: your_cxf_api_key_goes_here
+    user_api_key: your_cxf_user_api_key_goes_here
+    contact_api_key: your_cxf_contact_api_key_goes_here
     cxf_slug: slug_id #save id and token in redis
   redis_cache:
     use_cache: boolean_value_to_enable_and_disable_cache

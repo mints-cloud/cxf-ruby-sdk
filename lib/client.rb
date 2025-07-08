@@ -13,14 +13,12 @@ module Cxf
     include CxfHelper
 
     attr_reader :host, :mode, :api_key, :scope, :base_url
-    attr_accessor :session_token, :refresh_token, :contact_token_id, :user_agent
+    attr_accessor :contact_token_id, :user_agent, :response_cookies
 
     def initialize(
       host,
       api_key,
       scope = nil,
-      session_token = nil,
-      refresh_token = nil,
       contact_token_id = nil,
       visit_id = nil,
       debug = false,
@@ -29,12 +27,11 @@ module Cxf
 
       @host = host
       @api_key = api_key
-      @session_token = session_token
-      @refresh_token = refresh_token
       @contact_token_id = contact_token_id
       @visit_id = visit_id
       @debug = debug
       @user_agent = nil
+      @response_cookies = nil
 
       config = read_config_file('sdk') || {}
 
@@ -130,21 +127,21 @@ module Cxf
 
         unless url_need_cache
           response = self.send("#{@scope}_#{action}", full_url, nil, compatibility_options)
-          replace_tokens(response)
+          set_cookies(response.headers)
         end
 
       elsif action === 'create' or action === 'post'
         action = 'post'
         response = self.send("#{@scope}_#{action}", full_url, data, compatibility_options)
-        replace_tokens(response)
+        set_cookies(response.headers)
       elsif action === 'put' or action === 'patch' or action === 'update'
         action = 'put'
         response = self.send("#{@scope}_#{action}", full_url, data, compatibility_options)
-        replace_tokens(response)
+        set_cookies(response.headers)
       elsif action === 'delete' or action === 'destroy'
         action = 'delete'
         response = self.send("#{@scope}_#{action}", full_url, data, compatibility_options)
-        replace_tokens(response)
+        set_cookies(response.headers)
       end
 
       response = verify_response_status(response, config['sdk']['ignore_http_errors'])
@@ -347,18 +344,27 @@ module Cxf
       self.http_put(url, set_headers(compatibility_options, headers), data)
     end
 
+    def get_tokens
+      if @scope === 'user'
+        return { access_token: @response_cookies['cxf_user_access_token'], refresh_token: @response_cookies['cxf_user_refresh_token'] }
+      else
+        return { access_token: @response_cookies['cxf_contact_access_token'], refresh_token: @response_cookies['cxf_contact_refresh_token'] }
+      end
+    end
+
     def set_headers(compatibility_options, headers = nil)
       h = {
         'Accept' => 'application/json',
         'ApiKey' => @api_key,
-        'Access-Token' => @session_token || '',
-        'Refresh-Token' => @refresh_token || ''
       }
       h['Content-Type'] = 'application/json' unless compatibility_options['no_content_type']
       h['ContactToken'] = @contact_token_id if @contact_token_id
       h['Visit-Id'] = @visit_id if @visit_id
-      h['Authorization'] = "Bearer #{@session_token}" if @session_token
       h['User-Agent'] = @user_agent if @user_agent
+
+      tokens = get_tokens
+      h['Access-Token'] = tokens[:access_token]
+      h['Refresh-Token'] = tokens[:refresh_token]
 
       if headers
         headers.each do |k, v|
@@ -441,11 +447,84 @@ module Cxf
       str.pluralize != str && str.singularize == str
     end
 
-    def replace_tokens(response)
-      return unless response&.headers
+    def set_cookies(headers)
+      string_headers = headers['set-cookie'];
+      # use parse_cookies_header of rack
+      @response_cookies = parse_set_cookies(headers['set-cookie'])
 
-      @session_token = response.headers['Access-Token'] if response.headers.key?('Access-Token')
-      @refresh_token = response.headers['Refresh-Token'] if response.headers.key?('Refresh-Token')
+      # parsed_cookies.each_value do |cookie|
+      #   Rack::Utils.set_cookie_header!(
+      #     response.headers,
+      #     cookie['name'],
+      #     {
+      #       value: cookie['value'],
+      #       expires: cookie['expires'] ? Time.parse(cookie['expires']) : nil,
+      #       path: cookie['path'] || '/',
+      #       domain: '', # especificar si necesitas uno
+      #       secure: cookie['secure'] || false,
+      #       httponly: cookie['httponly'] || false,
+      #       same_site: (cookie['samesite'] || 'Lax').capitalize
+      #     }
+      #   )
+      # end
     end
+
+    # def split_cookie_header(header_string)
+    #   header_string.scan(/(?:^|, )([^=;]+=[^;]+(?:;[^,]*)*)/).flatten
+    # end
+
+    def parse_set_cookies(header_string)
+      return {} unless header_string.is_a?(String)
+
+      cookies = []
+      buffer = ''
+      inside_cookie = false
+
+      # Split cookies
+      header_string.split(',').each do |part|
+        if part.strip =~ /^[^=]+=/ && !inside_cookie
+          buffer = part
+          inside_cookie = true
+        elsif part.strip.downcase.start_with?('expires=')
+          buffer += ',' + part
+        elsif inside_cookie && part.strip.include?('=')
+          buffer += ',' + part
+          cookies << buffer.strip
+          buffer = ''
+          inside_cookie = false
+        else
+          buffer += ',' + part
+        end
+      end
+      cookies << buffer.strip unless buffer.empty?
+
+      parsed = {}
+
+      cookies.each do |cookie_string|
+        parts = cookie_string.split(/;\s*/)
+        name_value = parts.shift
+        name, value = name_value.split('=', 2)
+        next unless name && value
+
+        cookie = { 'name' => name, 'value' => value }
+
+        parts.each do |part|
+          if part.downcase.start_with?('expires=')
+            # Rebuild expires
+            cookie['expires'] = part[8..].strip
+          elsif part.include?('=')
+            k, v = part.split('=', 2)
+            cookie[k.strip.downcase] = v.strip
+          else
+            cookie[part.strip.downcase] = true
+          end
+        end
+
+        parsed[name] = cookie
+      end
+
+      parsed
+    end
+
   end
 end
