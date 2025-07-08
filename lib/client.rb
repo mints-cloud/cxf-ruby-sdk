@@ -145,6 +145,7 @@ module Cxf
       end
 
       response = verify_response_status(response, config['sdk']['ignore_http_errors'])
+
       begin
         if @debug
           response_from = if result_from_cache
@@ -346,13 +347,22 @@ module Cxf
 
     def get_tokens
       if @scope === 'user'
-        return { access_token: @response_cookies['cxf_user_access_token'], refresh_token: @response_cookies['cxf_user_refresh_token'] }
-      else
-        return { access_token: @response_cookies['cxf_contact_access_token'], refresh_token: @response_cookies['cxf_contact_refresh_token'] }
+        return {
+          access_token: @response_cookies.fetch('cxf_user_access_token', ''),
+          refresh_token: @response_cookies.fetch('cxf_user_refresh_token', '')
+        }
+      elsif @scope === 'contact'
+        return {
+          access_token: @response_cookies.fetch('cxf_contact_access_token', ''),
+          refresh_token: @response_cookies.fetch('cxf_contact_refresh_token', '')
+        }
       end
+
+      return nil
     end
 
     def set_headers(compatibility_options, headers = nil)
+      headers = {} if headers.nil?
       h = {
         'Accept' => 'application/json',
         'ApiKey' => @api_key,
@@ -363,8 +373,10 @@ module Cxf
       h['User-Agent'] = @user_agent if @user_agent
 
       tokens = get_tokens
-      h['Access-Token'] = tokens[:access_token]
-      h['Refresh-Token'] = tokens[:refresh_token]
+      if tokens
+        h['Access-Token'] = tokens[:access_token] if tokens[:access_token]
+        h['Refresh-Token'] = tokens[:refresh_token] if tokens[:refresh_token]
+      end
 
       if headers
         headers.each do |k, v|
